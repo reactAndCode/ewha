@@ -1,626 +1,691 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+KR:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  :root {
-    --cream: #F7F0E8;
-    --warm-white: #FDFAF5;
-    --charcoal: #2C2A27;
-    --muted: #8A8278;
-    --accent: #C4956A;
-    --accent-light: #E8D5BC;
-    --border: rgba(196, 149, 106, 0.3);
-  }
+    :root {
+      --cream: #F7F0E8;
+      --warm-white: #FDFAF5;
+      --charcoal: #2C2A27;
+      --muted: #8A8278;
+      --accent: #C4956A;
+      --accent-light: #E8D5BC;
+      --border: rgba(196, 149, 106, 0.3);
+    }
 
-  body {
-    background: var(--cream);
-    font-family: 'Noto Sans KR', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
+    body {
+      background: var(--cream);
+      font-family: 'Noto Sans KR', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
 
-  .phone-frame {
-    width: 390px;
-    height: 844px;
-    background: var(--warm-white);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
+    .phone-frame {
+      width: 390px;
+      height: 844px;
+      background: var(--warm-white);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
 
-  .bg-deco {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 260px;
-    background: linear-gradient(160deg, #F0E8DC 0%, #E8D9C4 40%, #F7F0E8 100%);
-    z-index: 0;
-  }
+    .bg-deco {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 260px;
+      background: linear-gradient(160deg, #F0E8DC 0%, #E8D9C4 40%, #F7F0E8 100%);
+      z-index: 0;
+    }
 
-  .bg-deco::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 180px; height: 180px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(196,149,106,0.15) 0%, transparent 70%);
-  }
+    .bg-deco::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196, 149, 106, 0.15) 0%, transparent 70%);
+    }
 
-  /* 상단 바 */
-  .top-bar {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 18px 8px;
-    flex-shrink: 0;
-  }
+    /* 상단 바 */
+    .top-bar {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px 8px;
+      flex-shrink: 0;
+    }
 
-  .lang-toggle {
-    display: flex;
-    gap: 2px;
-    background: rgba(255,255,255,0.7);
-    border-radius: 20px;
-    padding: 3px 5px;
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--border);
-  }
+    .lang-toggle {
+      display: flex;
+      gap: 2px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+      padding: 3px 5px;
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+    }
 
-  .lang-btn {
-    font-size: 11px;
-    font-family: 'Noto Sans KR', sans-serif;
-    color: var(--muted);
-    padding: 2px 9px;
-    border-radius: 14px;
-    cursor: pointer;
-    font-weight: 500;
-  }
+    .lang-btn {
+      font-size: 11px;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: var(--muted);
+      padding: 2px 9px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 500;
+    }
 
-  .lang-btn.active {
-    background: var(--accent);
-    color: white;
-  }
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+    }
 
-  .top-icons {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
+    .top-icons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
 
-  .icon-btn {
-    width: 30px; height: 30px;
-    background: rgba(255,255,255,0.7);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    color: var(--charcoal);
-    font-size: 13px;
-  }
+    .icon-btn {
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      color: var(--charcoal);
+      font-size: 13px;
+    }
 
-  /* 프로필 섹션 - 컴팩트 */
-  .profile-section {
-    position: relative;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 20px 8px;
-    flex-shrink: 0;
-  }
+    /* 프로필 섹션 - 컴팩트 */
+    .profile-section {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 20px 8px;
+      flex-shrink: 0;
+    }
 
-  .avatar-wrap {
-    position: relative;
-    margin-bottom: 4px;
-  }
+    .avatar-wrap {
+      position: relative;
+      margin-bottom: 4px;
+    }
 
-  .story-ring {
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    background: linear-gradient(var(--warm-white), var(--warm-white)) padding-box,
-                linear-gradient(135deg, #C4956A, #E8B88A, #C4956A) border-box;
-  }
+    .story-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: linear-gradient(var(--warm-white), var(--warm-white)) padding-box,
+        linear-gradient(135deg, #C4956A, #E8B88A, #C4956A) border-box;
+    }
 
-  .avatar-ring {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    padding: 2.5px;
-    background: linear-gradient(135deg, var(--accent), #E8C49A, var(--accent));
-  }
+    .avatar-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      padding: 2.5px;
+      background: linear-gradient(135deg, var(--accent), #E8C49A, var(--accent));
+    }
 
-  .avatar-slides {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: linear-gradient(145deg, #F0E0CC, #E8C9A8);
-    border: 2.5px solid var(--warm-white);
-    position: relative;
-    overflow: hidden;
-  }
+    .avatar-slides {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #F0E0CC, #E8C9A8);
+      border: 2.5px solid var(--warm-white);
+      position: relative;
+      overflow: hidden;
+    }
 
-  .avatar-slide {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    .avatar-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-  .avatar-slide.active {
-    opacity: 1;
-    z-index: 1;
-  }
+    .avatar-slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
 
-  .avatar-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+    .avatar-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-  .handle {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 1.5px;
-    margin-top: 8px;
-  }
+    .handle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      margin-top: 8px;
+    }
 
-  .brand-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
-    font-weight: 300;
-    color: var(--charcoal);
-    letter-spacing: 3px;
-    margin-top: 2px;
-    line-height: 1;
-  }
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--charcoal);
+      letter-spacing: 3px;
+      margin-top: 2px;
+      line-height: 1;
+    }
 
-  .brand-sub {
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 2px;
-    margin-top: 3px;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
+    .brand-sub {
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-top: 3px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
 
-  .bio {
-    font-size: 11px;
-    color: var(--muted);
-    text-align: center;
-    margin-top: 6px;
-    line-height: 1.6;
-    font-weight: 300;
-  }
+    .bio {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 6px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
 
-  /* 팔로우 버튼 */
-  .follow-row {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-    width: 100%;
-    max-width: 260px;
-  }
+    /* 팔로우 버튼 */
+    .follow-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 260px;
+    }
 
-  .btn-follow {
-    flex: 1;
-    padding: 7px 0;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 9px;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    font-family: 'Noto Sans KR', sans-serif;
-    letter-spacing: 0.5px;
-  }
+    .btn-follow {
+      flex: 1;
+      padding: 7px 0;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      letter-spacing: 0.5px;
+    }
 
-  .btn-msg {
-    flex: 1;
-    padding: 7px 0;
-    background: transparent;
-    color: var(--charcoal);
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    font-size: 12px;
-    cursor: pointer;
-    font-family: 'Noto Sans KR', sans-serif;
-    letter-spacing: 0.5px;
-  }
+    .btn-msg {
+      flex: 1;
+      padding: 7px 0;
+      background: transparent;
+      color: var(--charcoal);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      letter-spacing: 0.5px;
+    }
 
-  /* 인스타 스탯 */
-  .insta-stats {
-    display: flex;
-    gap: 0;
-    margin: 10px 0 0;
-    background: rgba(255,255,255,0.6);
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    width: 100%;
-    max-width: 280px;
-  }
+    /* 인스타 스탯 */
+    .insta-stats {
+      display: flex;
+      gap: 0;
+      margin: 10px 0 0;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      width: 100%;
+      max-width: 280px;
+    }
 
-  .stat-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 8px 6px;
-    cursor: pointer;
-    position: relative;
-  }
+    .stat-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 6px;
+      cursor: pointer;
+      position: relative;
+    }
 
-  .stat-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: 0; top: 20%; bottom: 20%;
-    width: 1px;
-    background: var(--border);
-  }
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 1px;
+      background: var(--border);
+    }
 
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 17px;
-    font-weight: 400;
-    color: var(--charcoal);
-    line-height: 1;
-  }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1;
+    }
 
-  .stat-label {
-    font-size: 9px;
-    color: var(--muted);
-    margin-top: 2px;
-    font-weight: 300;
-  }
+    .stat-label {
+      font-size: 9px;
+      color: var(--muted);
+      margin-top: 2px;
+      font-weight: 300;
+    }
 
-  /* 하이라이트 */
-  .highlights {
-    display: flex;
-    gap: 12px;
-    padding: 8px 20px 4px;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 5;
-    justify-content: center;
-  }
+    /* 하이라이트 */
+    .highlights {
+      display: flex;
+      gap: 12px;
+      padding: 8px 20px 4px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 5;
+      justify-content: center;
+    }
 
-  .highlight-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    cursor: pointer;
-  }
+    .highlight-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
 
-  .highlight-ring {
-    width: 50px; height: 50px;
-    border-radius: 50%;
-    padding: 2px;
-    background: linear-gradient(135deg, var(--accent), #E8C49A);
-  }
+    .highlight-ring {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent), #E8C49A);
+    }
 
-  .highlight-circle {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: linear-gradient(145deg, #F0E8DC, #E8D5BC);
-    border: 2px solid var(--warm-white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-  }
+    .highlight-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #F0E8DC, #E8D5BC);
+      border: 2px solid var(--warm-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
 
-  .highlight-label {
-    font-size: 9px;
-    color: var(--charcoal);
-    font-weight: 300;
-  }
+    .highlight-label {
+      font-size: 9px;
+      color: var(--charcoal);
+      font-weight: 300;
+    }
 
-  /* 구분선 */
-  .divider-line {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
-    margin: 6px 20px;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 5;
-  }
+    /* 구분선 */
+    .divider-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 6px 20px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 5;
+    }
 
-  /* 링크 섹션 - flex grow로 남은 공간 채움 */
-  .links-section {
-    padding: 6px 20px 16px;
-    position: relative;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    justify-content: space-between;
-  }
+    /* 링크 섹션 - flex grow로 남은 공간 채움 */
+    .links-section {
+      padding: 6px 20px 16px;
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
 
-  .links-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    flex: 1;
-    justify-content: space-evenly;
-  }
+    .links-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      flex: 1;
+      justify-content: space-evenly;
+    }
 
-  .link-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 11px 16px;
-    background: rgba(255,255,255,0.75);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-    backdrop-filter: blur(8px);
-    text-decoration: none;
-  }
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 16px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      backdrop-filter: blur(8px);
+      text-decoration: none;
+    }
 
-  .link-card:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(196,149,106,0.18);
-    border-color: var(--accent);
-  }
+    .link-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(196, 149, 106, 0.18);
+      border-color: var(--accent);
+    }
 
-  .link-icon-wrap {
-    width: 38px; height: 38px;
-    border-radius: 10px;
-    background: linear-gradient(145deg, #F0E8DC, #E8D5BC);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 18px;
-  }
+    .link-icon-wrap {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(145deg, #F0E8DC, #E8D5BC);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
 
-  .kakao-icon {
-    background: #FEE500;
-    border-radius: 10px;
-    width: 38px; height: 38px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
+    .kakao-icon {
+      background: #FEE500;
+      border-radius: 10px;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
 
-  .naver-icon {
-    background: #03C75A;
-    border-radius: 10px;
-    width: 38px; height: 38px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    color: white;
-    flex-shrink: 0;
-  }
+    .naver-icon {
+      background: #03C75A;
+      border-radius: 10px;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: white;
+      flex-shrink: 0;
+    }
 
-  .insta-icon {
-    background: linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-    border-radius: 10px;
-    width: 38px; height: 38px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-    color: white;
-  }
+    .insta-icon {
+      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      border-radius: 10px;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      color: white;
+    }
 
-  .link-text { flex: 1; }
+    .link-text {
+      flex: 1;
+    }
 
-  .link-title {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--charcoal);
-    letter-spacing: 0.2px;
-  }
+    .link-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+      letter-spacing: 0.2px;
+    }
 
-  .link-desc {
-    font-size: 10px;
-    color: var(--muted);
-    margin-top: 1px;
-    font-weight: 300;
-  }
+    .link-desc {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 1px;
+      font-weight: 300;
+    }
 
-  .link-arrow {
-    color: var(--accent);
-    font-size: 16px;
-    opacity: 0.6;
-  }
+    .link-arrow {
+      color: var(--accent);
+      font-size: 16px;
+      opacity: 0.6;
+    }
 
-  .footer {
-    text-align: center;
-    font-size: 9px;
-    color: var(--accent-light);
-    letter-spacing: 1px;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    flex-shrink: 0;
-    padding-bottom: 8px;
-    position: relative;
-    z-index: 5;
-  }
+    .footer {
+      text-align: center;
+      font-size: 9px;
+      color: var(--accent-light);
+      letter-spacing: 1px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      flex-shrink: 0;
+      padding-bottom: 8px;
+      position: relative;
+      z-index: 5;
+    }
 
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
 
-  .profile-section { animation: fadeInUp 0.4s ease forwards; }
-  .link-card:nth-child(1) { animation: fadeInUp 0.4s 0.15s ease both; }
-  .link-card:nth-child(2) { animation: fadeInUp 0.4s 0.22s ease both; }
-  .link-card:nth-child(3) { animation: fadeInUp 0.4s 0.29s ease both; }
-  .link-card:nth-child(4) { animation: fadeInUp 0.4s 0.36s ease both; }
-  .link-card:nth-child(5) { animation: fadeInUp 0.4s 0.43s ease both; }
-</style>
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .profile-section {
+      animation: fadeInUp 0.4s ease forwards;
+    }
+
+    .link-card:nth-child(1) {
+      animation: fadeInUp 0.4s 0.15s ease both;
+    }
+
+    .link-card:nth-child(2) {
+      animation: fadeInUp 0.4s 0.22s ease both;
+    }
+
+    .link-card:nth-child(3) {
+      animation: fadeInUp 0.4s 0.29s ease both;
+    }
+
+    .link-card:nth-child(4) {
+      animation: fadeInUp 0.4s 0.36s ease both;
+    }
+
+    .link-card:nth-child(5) {
+      animation: fadeInUp 0.4s 0.43s ease both;
+    }
+  </style>
 </head>
+
 <body>
-<div class="phone-frame">
-  <div class="bg-deco"></div>
+  <div class="phone-frame">
+    <div class="bg-deco"></div>
 
-  <!-- 상단 바 -->
-  <div class="top-bar">
-    <div class="lang-toggle">
-      <span class="lang-btn active">한국어</span>
-      <span class="lang-btn">ENG</span>
+    <!-- 상단 바 -->
+    <div class="top-bar">
+      <div class="lang-toggle">
+        <span class="lang-btn active">한국어</span>
+        <span class="lang-btn">ENG</span>
+      </div>
+      <div class="top-icons">
+        <div class="icon-btn">↑</div>
+        <div class="icon-btn">✕</div>
+      </div>
     </div>
-    <div class="top-icons">
-      <div class="icon-btn">↑</div>
-      <div class="icon-btn">✕</div>
-    </div>
-  </div>
 
-  <!-- 프로필 -->
-  <div class="profile-section">
-    <div class="avatar-wrap">
-      <div class="story-ring"></div>
-      <div class="avatar-ring">
-        <div class="avatar-slides">
-          <div class="avatar-slide active" id="slide0">
-            <img src="img1.png" alt="이화미술 선생님">
+    <!-- 프로필 -->
+    <div class="profile-section">
+      <div class="avatar-wrap">
+        <div class="story-ring"></div>
+        <div class="avatar-ring">
+          <div class="avatar-slides">
+            <div class="avatar-slide active" id="slide0">
+              <img src="img1.png" alt="이화미술 선생님">
+            </div>
+            <div class="avatar-slide" id="slide1">
+              <img src="img2.png" alt="이화미술 수업">
+            </div>
           </div>
-          <div class="avatar-slide" id="slide1">
-            <img src="img2.png" alt="이화미술 수업">
+        </div>
+
+      </div>
+      <div class="handle">@ewah_art</div>
+      <div class="brand-name">EWAH ART</div>
+      <div class="brand-sub">이화미술</div>
+      <div class="bio">감성을 그리는 공간 🖌️ · 아이들의 창의력을 키워드리는 미술 교육</div>
+    </div>
+
+    <!-- 링크 5개 -->
+    <div class="links-section">
+      <div class="links-inner">
+        <a class="link-card" href="https://blog.naver.com/sodamc93">
+          <div class="link-icon-wrap">🎨</div>
+          <div class="link-text">
+            <div class="link-title">이화미술</div>
+            <div class="link-desc">공식 홈페이지</div>
           </div>
-        </div>
-      </div>
-     
-    </div>
-    <div class="handle">@ewah_art</div>
-    <div class="brand-name">EWAH ART</div>
-    <div class="brand-sub">이화미술</div>
-    <div class="bio">감성을 그리는 공간 🖌️ · 아이들의 창의력을 키워드리는 미술 교육</div>
-  </div>
- 
-  <!-- 링크 5개 -->
-  <div class="links-section">
-    <div class="links-inner">
-      <a class="link-card" href="#">
-        <div class="link-icon-wrap">🎨</div>
-        <div class="link-text">
-          <div class="link-title">이화미술</div>
-          <div class="link-desc">공식 홈페이지</div>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
+          <span class="link-arrow">›</span>
+        </a>
 
-      <a class="link-card" href="#">
-        <div class="link-icon-wrap">📍</div>
-        <div class="link-text">
-          <div class="link-title">이화미술 위치안내</div>
-          <div class="link-desc">찾아오시는 길</div>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
+        <a class="link-card" href="https://blog.naver.com/sodamc93/150101186477">
+          <div class="link-icon-wrap">📍</div>
+          <div class="link-text">
+            <div class="link-title">이화미술 위치안내</div>
+            <div class="link-desc">찾아오시는 길</div>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
 
-      <a class="link-card" href="#">
-        <div class="kakao-icon">💬</div>
-        <div class="link-text">
-          <div class="link-title">1:1 카카오톡 채팅</div>
-          <div class="link-desc">빠른 상담 문의</div>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
+        <a class="link-card" href="https://open.kakao.com/o/sxn7s5vi">
+          <div class="kakao-icon">💬</div>
+          <div class="link-text">
+            <div class="link-title">1:1 카카오톡 채팅</div>
+            <div class="link-desc">빠른 상담 문의</div>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
 
-      <a class="link-card" href="#">
-        <div class="insta-icon">📷</div>
-        <div class="link-text">
-          <div class="link-title">인스타그램</div>
-          <div class="link-desc">@ewah_art · 일상 & 작품</div>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
+        <a class="link-card" href="https://www.instagram.com/ewha_artdesign/">
+          <div class="insta-icon">📷</div>
+          <div class="link-text">
+            <div class="link-title">인스타그램</div>
+            <div class="link-desc">@ewah_art · 일상 & 작품</div>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
 
-      <a class="link-card" href="#">
-        <div class="naver-icon">blog</div>
-        <div class="link-text">
-          <div class="link-title">네이버 블로그</div>
-          <div class="link-desc">수업 후기 & 미술 이야기</div>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-
- <div class="divider-line"></div>
-
- <!-- 하이라이트 -->
-  <div class="highlights">
-    <div class="highlight-item">
-      <div class="highlight-ring"><div class="highlight-circle">🖼️</div></div>
-      <span class="highlight-label">작품</span>
-    </div>
-    <div class="highlight-item">
-      <div class="highlight-ring"><div class="highlight-circle">🎨</div></div>
-      <span class="highlight-label">수업</span>
-    </div>
-    <div class="highlight-item">
-      <div class="highlight-ring"><div class="highlight-circle">🏫</div></div>
-      <span class="highlight-label">공간</span>
-    </div>
-    <div class="highlight-item">
-      <div class="highlight-ring"><div class="highlight-circle">🏆</div></div>
-      <span class="highlight-label">수상</span>
-    </div>
-  </div>
-
-  <!-- 이동된 버튼 및 스탯 영역 -->
-  <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px; margin-bottom: 20px;">
-    <div class="follow-row" style="margin-top: 0;">
-      <button class="btn-follow">팔로우</button>
-      <button class="btn-msg">메시지</button>
-    </div>
-    <div class="insta-stats" style="margin-top: 15px;">
-      <div class="stat-item">
-        <span class="stat-num">248</span>
-        <span class="stat-label">게시물</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">1.2K</span>
-        <span class="stat-label">팔로워</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">186</span>
-        <span class="stat-label">팔로잉</span>
+        <a class="link-card" href="https://blog.naver.com/sodamc93/224291601547">
+          <div class="naver-icon">blog</div>
+          <div class="link-text">
+            <div class="link-title">네이버 블로그</div>
+            <div class="link-desc">수업 후기 & 미술 이야기</div>
+          </div>
+          <span class="link-arrow">›</span>
+        </a>
       </div>
     </div>
+
+    <div class="divider-line"></div>
+
+    <!-- 하이라이트 -->
+    <div class="highlights">
+      <div class="highlight-item">
+        <div class="highlight-ring">
+          <div class="highlight-circle">🖼️</div>
+        </div>
+        <span class="highlight-label">작품</span>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-ring">
+          <div class="highlight-circle">🎨</div>
+        </div>
+        <span class="highlight-label">수업</span>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-ring">
+          <div class="highlight-circle">🏫</div>
+        </div>
+        <span class="highlight-label">공간</span>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-ring">
+          <div class="highlight-circle">🏆</div>
+        </div>
+        <span class="highlight-label">수상</span>
+      </div>
+    </div>
+
+    <!-- 이동된 버튼 및 스탯 영역 -->
+    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px; margin-bottom: 20px;">
+      <div class="follow-row" style="margin-top: 0;">
+        <button class="btn-follow">팔로우</button>
+        <button class="btn-msg">메시지</button>
+      </div>
+      <div class="insta-stats" style="margin-top: 15px;">
+        <div class="stat-item">
+          <span class="stat-num">248</span>
+          <span class="stat-label">게시물</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">1.2K</span>
+          <span class="stat-label">팔로워</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">186</span>
+          <span class="stat-label">팔로잉</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+
+    <div class="footer">ewah art · 이화미술</div>
   </div>
 
-  <div class="divider-line"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.avatar-slide');
+      let currentSlide = 0;
 
-
-  <div class="footer">ewah art · 이화미술</div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const slides = document.querySelectorAll('.avatar-slide');
-    let currentSlide = 0;
-
-    setInterval(() => {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }, 10000); // 10초마다 변경
-  });
-</script>
+      setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }, 10000); // 10초마다 변경
+    });
+  </script>
 </body>
+
 </html>

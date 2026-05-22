@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이화미술공작소 - 찾아오시는 길 📍</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cream: #F7F0E8;
+      --warm-white: #FDFAF5;
+      --charcoal: #2C2A27;
+      --muted: #8A8278;
+      --accent: #C4956A;
+      --accent-light: #E8D5BC;
+      --border: rgba(196, 149, 106, 0.3);
+      --insta-blue: #0095f6;
+      --insta-gray: #737373;
+    }
+
+    body {
+      background: var(--cream);
+      font-family: 'Noto Sans KR', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      color: var(--charcoal);
+    }
+
+    .phone-frame {
+      width: 390px;
+      min-height: 844px;
+      background: var(--warm-white);
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    /* 배경 데코 */
+    .bg-deco {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(160deg, #F0E8DC 0%, #E8D9C4 40%, #F7F0E8 100%);
+      z-index: 0;
+    }
+
+    /* 상단 네비게이션 바 */
+    .top-bar {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px 10px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+    }
+
+    .back-btn {
+      width: 34px;
+      height: 34px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--charcoal);
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: white;
+      transform: scale(1.05);
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--charcoal);
+    }
+
+    .share-btn {
+      width: 34px;
+      height: 34px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--charcoal);
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .share-btn:hover {
+      background: white;
+      transform: scale(1.05);
+    }
+
+    /* 메인 컨텐츠 영역 */
+    .content-area {
+      position: relative;
+      z-index: 5;
+      padding: 10px 16px 30px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* 인스타그램 포스트 카드 */
+    .insta-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(196, 149, 106, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 카드 헤더 */
+    .card-header {
+      display: flex;
+      align-items: center;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      padding: 1.5px;
+      background: linear-gradient(135deg, var(--accent), #E8C49A, var(--accent));
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid white;
+    }
+
+    .user-info {
+      flex: 1;
+    }
+
+    .user-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+
+    .user-location {
+      font-size: 11px;
+      color: var(--insta-blue);
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .user-location:hover {
+      text-decoration: underline;
+    }
+
+    .more-options {
+      color: var(--insta-gray);
+      font-size: 16px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* 카드 미디어 (캐러셀) */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #fafafa;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .carousel-slide {
+      width: 33.333%;
+      height: 100%;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* 슬라이드 1: 인트로 커버 */
+    .slide-cover {
+      background: linear-gradient(135deg, #F5EDE4 0%, #E6D8CA 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .cover-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .cover-tag {
+      font-size: 9px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .cover-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1.3;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .cover-title span {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .cover-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .swipe-hint {
+      position: absolute;
+      bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--accent);
+      font-weight: 500;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* 슬라이드 2: 지도 이미지 */
+    .slide-map {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .slide-map img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .slide-map:active img {
+      transform: scale(1.05);
+    }
+
+    /* 슬라이드 3: 세부 안내 */
+    .slide-guide {
+      background: var(--warm-white);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .guide-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 6px;
+    }
+
+    .guide-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .guide-item {
+      display: flex;
+      gap: 12px;
+    }
+
+    .guide-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(196, 149, 106, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .guide-text-box {
+      flex: 1;
+    }
+
+    .guide-text-box strong {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 2px;
+    }
+
+    .guide-text-box p {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* 캐러셀 내비게이션 화살표 */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      transition: all 0.2s ease;
+      color: var(--charcoal);
+    }
+
+    .carousel-arrow:hover {
+      background: white;
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .arrow-left {
+      left: 10px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .arrow-right {
+      right: 10px;
+    }
+
+    .carousel-arrow.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* 캐러셀 페이지네이션 닷 */
+    .carousel-pagination {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 10;
+    }
+
+    .pag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .pag-dot.active {
+      background: var(--accent);
+      transform: scale(1.2);
+    }
+
+    /* 카드 액션 바 (하트, 댓글, 북마크) */
+    .card-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px 6px;
+    }
+
+    .actions-left {
+      display: flex;
+      gap: 12px;
+    }
+
+    .act-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      transition: transform 0.2s ease;
+      color: var(--charcoal);
+    }
+
+    .act-btn:active {
+      transform: scale(0.85);
+    }
+
+    .act-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: var(--charcoal);
+      stroke-width: 2;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      transition: all 0.2s ease;
+    }
+
+    /* 하트 활성화 효과 */
+    .act-btn.liked svg {
+      fill: #ff3040;
+      stroke: #ff3040;
+      animation: heartBeat 0.3s forwards;
+    }
+
+    @keyframes heartBeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    /* 북마크 활성화 효과 */
+    .act-btn.bookmarked svg {
+      fill: var(--charcoal);
+      stroke: var(--charcoal);
+    }
+
+    /* 슬라이드 닷 인디케이터 (중앙) */
+    .actions-center-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .center-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.12);
+      transition: all 0.2s ease;
+    }
+
+    .center-dot.active {
+      background: var(--accent);
+      width: 6px;
+      height: 6px;
+    }
+
+    /* 카드 텍스트 & 댓글 */
+    .card-details {
+      padding: 0 14px 14px;
+    }
+
+    .likes-count {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .post-caption {
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .post-caption .author {
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .post-caption .highlight-text {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* 길 안내 디테일 박스 */
+    .info-card-box {
+      background: var(--warm-white);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      margin: 8px 0 12px;
+    }
+
+    .address-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 11.5px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .addr-copy-btn {
+      background: rgba(196, 149, 106, 0.1);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 500;
+      padding: 3px 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .addr-copy-btn:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .direction-details {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .direction-details span {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .post-hashtags {
+      font-size: 11px;
+      color: var(--insta-blue);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .view-comments {
+      font-size: 11.5px;
+      color: var(--insta-gray);
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    /* 가상 댓글 */
+    .comment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .comment-item {
+      font-size: 11.5px;
+      line-height: 1.4;
+    }
+
+    .comment-user {
+      font-weight: 700;
+      margin-right: 5px;
+    }
+
+    .comment-text {
+      color: var(--charcoal);
+    }
+
+    .post-time {
+      font-size: 9px;
+      color: var(--insta-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 10px;
+    }
+
+    /* 하단 지도 외부 바로가기 버튼 */
+    .cta-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .cta-label {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: -2px;
+      font-weight: 500;
+    }
+
+    .map-link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .map-link-btn:active {
+      transform: scale(0.98);
+    }
+
+    .naver-map-btn {
+      background: #03C75A;
+      color: white;
+    }
+
+    .naver-map-btn:hover {
+      background: #02b350;
+      box-shadow: 0 6px 16px rgba(3, 199, 90, 0.25);
+    }
+
+    .kakao-map-btn {
+      background: #FEE500;
+      color: #181600;
+    }
+
+    .kakao-map-btn:hover {
+      background: #f5dc00;
+      box-shadow: 0 6px 16px rgba(254, 229, 0, 0.25);
+    }
+
+    .btn-logo {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 900;
+      background: white;
+    }
+
+    .naver-logo {
+      color: #03C75A;
+      font-family: Arial, sans-serif;
+    }
+
+    .kakao-logo {
+      color: #181600;
+      background: transparent;
+      font-size: 12px;
+    }
+
+    /* 토스트 팝업 (주소 복사 완료 알림) */
+    .toast {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translate(-50%, 20px);
+      background: rgba(44, 42, 39, 0.9);
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 25px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* 북마크 저장 완료 팝업 */
+    .bookmark-alert {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translate(-50%, -20px);
+      background: rgba(253, 250, 245, 0.95);
+      border: 1px solid var(--accent);
+      color: var(--charcoal);
+      font-size: 11.5px;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(196, 149, 106, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bookmark-alert.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* 푸터 워터마크 */
+    .footer {
+      text-align: center;
+      font-size: 9px;
+      color: var(--accent-light);
+      letter-spacing: 1px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      padding: 20px 0 16px;
+      position: relative;
+      z-index: 5;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="phone-frame">
+    <div class="bg-deco"></div>
+
+    <!-- 상단 바 -->
+    <div class="top-bar">
+      <a href="index.html" class="back-btn">‹</a>
+      <div class="page-title">LOCATION</div>
+      <div class="share-btn" id="headerShareBtn">🔗</div>
+    </div>
+
+    <!-- 메인 컨텐츠 영역 -->
+    <div class="content-area">
+
+      <!-- 인스타그램 포스트 카드 -->
+      <div class="insta-card">
+        <!-- 카드 헤더 -->
+        <div class="card-header">
+          <div class="avatar" onclick="location.href='index.html'">
+            <img src="img1.png" alt="Ewah Art Avatar">
+          </div>
+          <div class="user-info">
+            <div class="user-name" onclick="location.href='index.html'">ewha_art</div>
+            <a href="https://map.naver.com/p/search/%EC%9D%B4%ED%99%94%EB%AF%B8%EC%88%A0%EA%B3%B5%EC%9E%91%EC%86%8C" target="_blank" class="user-location">이화미술공작소 문래</a>
+          </div>
+          <div class="more-options" id="moreOptionsBtn">•••</div>
+        </div>
+
+        <!-- 카드 미디어 (캐러셀) -->
+        <div class="carousel-container" id="carouselContainer">
+          <div class="carousel-track" id="carouselTrack">
+            <!-- 슬라이드 1: 인트로 커버 -->
+            <div class="carousel-slide slide-cover">
+              <span class="cover-tag">Directions</span>
+              <h2 class="cover-title">이화미술공작소<br><span>찾아오시는 길 📍</span></h2>
+              <div class="cover-icon">🎨</div>
+              <p class="cover-desc">문래역 도보 3분 거리의 미술 교습소<br>옆으로 밀어서 지도를 확인해 보세요!</p>
+              <div class="swipe-hint">
+                <span>옆으로 넘기기</span>
+                <span>➡️</span>
+              </div>
+            </div>
+
+            <!-- 슬라이드 2: 지도 이미지 -->
+            <div class="carousel-slide slide-map" id="mapSlide">
+              <img src="img03.PNG" alt="이화미술공작소 지도">
+            </div>
+
+            <!-- 슬라이드 3: 세부 안내 -->
+            <div class="carousel-slide slide-guide">
+              <div class="guide-title">
+                <span>📍</span> 찾아오시는 길 상세 안내
+              </div>
+              <div class="guide-list">
+                <div class="guide-item">
+                  <div class="guide-icon-box">🚇</div>
+                  <div class="guide-text-box">
+                    <strong>지하철 이용 시</strong>
+                    <p>2호선 문래역 3번 출구 도보 3분 (약 250m)</p>
+                  </div>
+                </div>
+                <div class="guide-item">
+                  <div class="guide-icon-box">🚶</div>
+                  <div class="guide-text-box">
+                    <strong>도보 이동 경로</strong>
+                    <p>3번 출구로 나와 청소년센터 사잇길로 직진 ➡️ 문래초등학교를 지나 세븐일레븐 건물 4층!</p>
+                  </div>
+                </div>
+                <div class="guide-item">
+                  <div class="guide-icon-box">🚗</div>
+                  <div class="guide-text-box">
+                    <strong>주차 안내</strong>
+                    <p>대소빌딩 건물 내 주차 가능 (방문 상담 전 사전 협의가 필요합니다.)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 캐러셀 화살표 -->
+          <button class="carousel-arrow arrow-left" id="prevBtn">‹</button>
+          <button class="carousel-arrow arrow-right show" id="nextBtn">›</button>
+
+          <!-- 캐러셀 닷 -->
+          <div class="carousel-pagination" id="carouselPagination">
+            <span class="pag-dot active"></span>
+            <span class="pag-dot"></span>
+            <span class="pag-dot"></span>
+          </div>
+        </div>
+
+        <!-- 카드 액션 바 -->
+        <div class="card-actions">
+          <div class="actions-left">
+            <button class="act-btn" id="likeBtn">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </button>
+            <button class="act-btn" id="commentBtn" onclick="focusComment()">
+              <svg viewBox="0 0 24 24">
+                <path d="M21.92 11.6C21.78 6.08 17.26 1.7 12 1.7S2.22 6.08 2.08 11.6c-.08 3.2 1.22 6.2 3.65 8.16l-.8 2.5a.75.75 0 0 0 1.05.88l2.9-1.5c1 .36 2.06.56 3.12.56 5.26 0 9.78-4.38 9.92-9.9m-9.92 8.2c-.93 0-1.85-.16-2.73-.47a.75.75 0 0 0-.64.06l-1.92 1 1.94-1.94a.75.75 0 0 0-.17-.98c-1.8-1.43-2.8-3.6-2.74-5.9.1-4.7 3.96-8.42 8.66-8.42s8.56 3.72 8.66 8.42c.1 4.7-3.96 8.42-8.66 8.42z"/>
+              </svg>
+            </button>
+            <button class="act-btn" id="shareBtn">
+              <svg viewBox="0 0 24 24">
+                <path d="M21.74 11.3l-8-7.5c-.44-.4-1.14-.1-.14.54v2.96c-5.85.04-10.74 4-11.45 9.77-.08.62.66.98 1.1.53 2.16-2.16 4.7-3.23 7.85-3.23h2.5v2.96c0 .64.7 1 1.14.54l8-7.5a.75.75 0 0 0 0-1.08z"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="actions-center-dots">
+            <span class="center-dot active"></span>
+            <span class="center-dot"></span>
+            <span class="center-dot"></span>
+          </div>
+
+          <div class="actions-right">
+            <button class="act-btn" id="bookmarkBtn">
+              <svg viewBox="0 0 24 24">
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v16l9-4 9 4V5c0-1.1-.9-2-2-2zm0 15l-7-3.12L5 18V5h14v13z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- 카드 상세 내용 -->
+        <div class="card-details">
+          <div class="likes-count">좋아요 <span id="likesNum">1,482</span>개</div>
+          
+          <div class="post-caption">
+            <span class="author">ewha_art</span>
+            이화미술공작소에 놀러 오시는 길을 안내해 드려요 🌿🎨 <br>
+            2호선 문래역에서 3분 거리에 위치하고 있어 대중교통으로도 아주 편하게 방문하실 수 있어요. <br>
+            상세 주소와 경로를 아래에서 확인해 보세요! 👇
+          </div>
+
+          <!-- 길 안내 디테일 정보 박스 -->
+          <div class="info-card-box">
+            <div class="address-row">
+              <div>
+                <strong>📍 주소</strong><br>
+                서울시 영등포구 문래로 92, 대소빌딩 4층
+              </div>
+              <button class="addr-copy-btn" id="copyAddrBtn">주소 복사</button>
+            </div>
+            <div class="direction-details">
+              <span>🚇 <strong>2호선 문래역 3번 출구</strong> (도보 3분 / 약 250m)</span>
+              <span>🚗 <strong>주차 가능</strong> (사전 연락 주시면 안내해 드립니다.)</span>
+              <span>💡 <strong>팁</strong>: 세븐일레븐 건물 4층, 유명 베이커리 <strong>'쉐프조'</strong> 바로 옆 건물이랍니다!</span>
+            </div>
+          </div>
+
+          <div class="post-hashtags">
+            #이화미술공작소 #이화미술 #문래동미술 #문래역미술 #아동미술교습소 #창의미술 #수채화수업 #문래동핫플 #쉐프조옆건물 #문래맘
+          </div>
+
+          <div class="view-comments" id="commentsToggleBtn">댓글 2개 모두 보기</div>
+          
+          <!-- 가상 댓글 목록 -->
+          <div class="comment-list" id="commentList" style="display: none;">
+            <div class="comment-item">
+              <span class="comment-user">mullae_mom</span>
+              <span class="comment-text">문래역 3번 출구에서 진짜 3분 컷이에요! 애들 데리고 다니기 짱 편함 👍</span>
+            </div>
+            <div class="comment-item">
+              <span class="comment-user">art_lover_y</span>
+              <span class="comment-text">쉐프조 바로 옆이라 학원 데려다주고 빵 사 먹기 딱 좋아요 ㅋㅋㅋ🥐🍩</span>
+            </div>
+          </div>
+
+          <div class="post-time">5월 22일</div>
+        </div>
+      </div>
+
+      <!-- 하단 바로가기 버튼 영역 -->
+      <div class="cta-container">
+        <div class="cta-label">외부 지도로 보기</div>
+        
+        <a href="https://map.naver.com/p/search/%EC%9D%B4%ED%99%94%EB%AF%B8%EC%88%A0%EA%B3%B5%EC%9E%91%EC%86%8C" target="_blank" class="map-link-btn naver-map-btn">
+          <span class="btn-logo naver-logo">N</span>
+          <span>네이버 지도로 길 찾기</span>
+        </a>
+
+        <a href="https://map.kakao.com/?q=%EC%9D%B4%ED%99%94%EB%AF%B8%EC%88%A0%EA%B3%B5%EC%9E%91%EC%86%8C" target="_blank" class="map-link-btn kakao-map-btn">
+          <span class="btn-logo kakao-logo">💬</span>
+          <span>카카오 맵으로 길 찾기</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- 토스트 팝업 (주소 복사 완료) -->
+    <div class="toast" id="copyToast">
+      <span>📋</span> 주소가 클립보드에 복사되었습니다!
+    </div>
+
+    <!-- 북마크 저장 완료 팝업 -->
+    <div class="bookmark-alert" id="bookmarkAlert">
+      <span>🔖</span> 저장 완료! 보관함에서 확인해 보세요.
+    </div>
+
+    <!-- 푸터 워터마크 -->
+    <div class="footer">ewah art · 이화미술공작소</div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 캐러셀 로직
+      const track = document.getElementById('carouselTrack');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const pagDots = document.querySelectorAll('.pag-dot');
+      const centerDots = document.querySelectorAll('.center-dot');
+      let currentSlide = 0;
+      const totalSlides = 3;
+
+      function updateCarousel() {
+        track.style.transform = `translateX(-${currentSlide * 33.333}%)`;
+        
+        // 화살표 보이기/숨기기
+        if (currentSlide === 0) {
+          prevBtn.classList.remove('show');
+        } else {
+          prevBtn.classList.add('show');
+        }
+
+        if (currentSlide === totalSlides - 1) {
+          nextBtn.classList.remove('show');
+        } else {
+          nextBtn.classList.add('show');
+        }
+
+        // 페이지네이션 닷 업데이트
+        pagDots.forEach((dot, idx) => {
+          if (idx === currentSlide) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+
+        // 액션바 중앙 닷 업데이트
+        centerDots.forEach((dot, idx) => {
+          if (idx === currentSlide) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+
+      nextBtn.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+          updateCarousel();
+        }
+      });
+
+      prevBtn.addEventListener('click', () => {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateCarousel();
+        }
+      });
+
+      // 스와이프 터치 이벤트 (모바일 대응)
+      let touchStartX = 0;
+      let touchEndX = 0;
+      const container = document.getElementById('carouselContainer');
+
+      container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      container.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+
+      function handleSwipe() {
+        const threshold = 50; // swipe 감지 역치
+        if (touchStartX - touchEndX > threshold) {
+          // 왼쪽으로 스와이프 (다음 슬라이드)
+          if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateCarousel();
+          }
+        } else if (touchEndX - touchStartX > threshold) {
+          // 오른쪽으로 스와이프 (이전 슬라이드)
+          if (currentSlide > 0) {
+            currentSlide--;
+            updateCarousel();
+          }
+        }
+      }
+
+      // 하트 좋아요 로직
+      const likeBtn = document.getElementById('likeBtn');
+      const likesNum = document.getElementById('likesNum');
+      let isLiked = false;
+      let initialLikes = 1482;
+
+      likeBtn.addEventListener('click', () => {
+        isLiked = !isLiked;
+        likeBtn.classList.toggle('liked', isLiked);
+        
+        if (isLiked) {
+          likesNum.textContent = (initialLikes + 1).toLocaleString();
+        } else {
+          likesNum.textContent = initialLikes.toLocaleString();
+        }
+      });
+
+      // 더블 클릭으로 좋아요 기능 (지도 이미지 및 커버)
+      const coverSlide = document.querySelector('.slide-cover');
+      const mapSlide = document.getElementById('mapSlide');
+
+      [coverSlide, mapSlide].forEach(slide => {
+        slide.addEventListener('dblclick', (e) => {
+          if (!isLiked) {
+            isLiked = true;
+            likeBtn.classList.add('liked');
+            likesNum.textContent = (initialLikes + 1).toLocaleString();
+            
+            // 더블 클릭 시 임시 하트 팝업 이펙트
+            const heartEco = document.createElement('div');
+            heartEco.innerHTML = '❤️';
+            heartEco.style.position = 'absolute';
+            heartEco.style.left = `${e.clientX - slide.getBoundingClientRect().left}px`;
+            heartEco.style.top = `${e.clientY - slide.getBoundingClientRect().top}px`;
+            heartEco.style.fontSize = '40px';
+            heartEco.style.transform = 'translate(-50%, -50%) scale(0)';
+            heartEco.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            heartEco.style.pointerEvents = 'none';
+            heartEco.style.zIndex = '50';
+            slide.appendChild(heartEco);
+
+            setTimeout(() => {
+              heartEco.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            }, 10);
+
+            setTimeout(() => {
+              heartEco.style.transform = 'translate(-50%, -50%) scale(1) translateY(-30px)';
+              heartEco.style.opacity = '0';
+            }, 300);
+
+            setTimeout(() => {
+              heartEco.remove();
+            }, 800);
+          }
+        });
+      });
+
+      // 북마크 저장 로직
+      const bookmarkBtn = document.getElementById('bookmarkBtn');
+      const bookmarkAlert = document.getElementById('bookmarkAlert');
+      let isBookmarked = false;
+      let bookmarkTimeout;
+
+      bookmarkBtn.addEventListener('click', () => {
+        isBookmarked = !isBookmarked;
+        bookmarkBtn.classList.toggle('bookmarked', isBookmarked);
+
+        if (isBookmarked) {
+          clearTimeout(bookmarkTimeout);
+          bookmarkAlert.classList.add('show');
+          bookmarkTimeout = setTimeout(() => {
+            bookmarkAlert.classList.remove('show');
+          }, 2000);
+        }
+      });
+
+      // 주소 복사 로직
+      const copyBtn = document.getElementById('copyAddrBtn');
+      const toast = document.getElementById('copyToast');
+      let toastTimeout;
+
+      copyBtn.addEventListener('click', () => {
+        const addressText = "서울시 영등포구 문래로 92 대소빌딩 4층";
+        
+        navigator.clipboard.writeText(addressText).then(() => {
+          clearTimeout(toastTimeout);
+          toast.classList.add('show');
+          toastTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+          }, 2000);
+        }).catch(err => {
+          console.error('클립보드 복사 실패:', err);
+        });
+      });
+
+      // 공유하기 버튼 로직 (헤더 및 액션바)
+      const headerShareBtn = document.getElementById('headerShareBtn');
+      const postShareBtn = document.getElementById('shareBtn');
+
+      [headerShareBtn, postShareBtn].forEach(btn => {
+        btn.addEventListener('click', () => {
+          const pageUrl = window.location.href;
+          navigator.clipboard.writeText(pageUrl).then(() => {
+            clearTimeout(toastTimeout);
+            toast.innerHTML = '🔗 페이지 링크가 복사되었습니다!';
+            toast.classList.add('show');
+            toastTimeout = setTimeout(() => {
+              toast.classList.remove('show');
+              // 다시 원상복구
+              setTimeout(() => {
+                toast.innerHTML = '<span>📋</span> 주소가 클립보드에 복사되었습니다!';
+              }, 300);
+            }, 2000);
+          }).catch(err => {
+            console.error('공유 링크 복사 실패:', err);
+          });
+        });
+      });
+
+      // 댓글 토글 로직
+      const commentsToggleBtn = document.getElementById('commentsToggleBtn');
+      const commentList = document.getElementById('commentList');
+      let commentsExpanded = false;
+
+      commentsToggleBtn.addEventListener('click', () => {
+        commentsExpanded = !commentsExpanded;
+        if (commentsExpanded) {
+          commentList.style.display = 'flex';
+          commentsToggleBtn.textContent = '댓글 접기';
+        } else {
+          commentList.style.display = 'none';
+          commentsToggleBtn.textContent = '댓글 2개 모두 보기';
+        }
+      });
+
+      // 옵션 버튼 모의 알림
+      const moreOptionsBtn = document.getElementById('moreOptionsBtn');
+      moreOptionsBtn.addEventListener('click', () => {
+        alert('이화미술공작소 문래점\n- 전화문의: 02-2632-1501 (예약 전용)\n- 카카오톡: ewah_art\n- 블로그: blog.naver.com/sodamc93');
+      });
+    });
+
+    // 댓글 포커스 가상 액션
+    function focusComment() {
+      const toggle = document.getElementById('commentsToggleBtn');
+      const list = document.getElementById('commentList');
+      list.style.display = 'flex';
+      toggle.textContent = '댓글 접기';
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+</body>
+</html>

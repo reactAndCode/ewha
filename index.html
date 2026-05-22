@@ -20,26 +20,25 @@
   body {
     background: var(--cream);
     font-family: 'Noto Sans KR', sans-serif;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 0;
   }
 
   .phone-frame {
     width: 390px;
-    min-height: 844px;
+    height: 844px;
     background: var(--warm-white);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* 배경 장식 */
   .bg-deco {
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 340px;
+    height: 260px;
     background: linear-gradient(160deg, #F0E8DC 0%, #E8D9C4 40%, #F7F0E8 100%);
     z-index: 0;
   }
@@ -47,19 +46,10 @@
   .bg-deco::before {
     content: '';
     position: absolute;
-    top: -60px; right: -60px;
-    width: 220px; height: 220px;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(196,149,106,0.15) 0%, transparent 70%);
-  }
-
-  .bg-deco::after {
-    content: '';
-    position: absolute;
-    bottom: 20px; left: -40px;
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(196,149,106,0.1) 0%, transparent 70%);
   }
 
   /* 상단 바 */
@@ -69,7 +59,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 20px 10px;
+    padding: 12px 18px 8px;
+    flex-shrink: 0;
   }
 
   .lang-toggle {
@@ -77,7 +68,7 @@
     gap: 2px;
     background: rgba(255,255,255,0.7);
     border-radius: 20px;
-    padding: 4px 6px;
+    padding: 3px 5px;
     backdrop-filter: blur(8px);
     border: 1px solid var(--border);
   }
@@ -86,10 +77,9 @@
     font-size: 11px;
     font-family: 'Noto Sans KR', sans-serif;
     color: var(--muted);
-    padding: 3px 10px;
+    padding: 2px 9px;
     border-radius: 14px;
     cursor: pointer;
-    transition: all 0.2s;
     font-weight: 500;
   }
 
@@ -100,12 +90,12 @@
 
   .top-icons {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     align-items: center;
   }
 
   .icon-btn {
-    width: 34px; height: 34px;
+    width: 30px; height: 30px;
     background: rgba(255,255,255,0.7);
     border-radius: 50%;
     display: flex;
@@ -113,40 +103,40 @@
     justify-content: center;
     cursor: pointer;
     border: 1px solid var(--border);
-    backdrop-filter: blur(8px);
     color: var(--charcoal);
-    font-size: 14px;
-    transition: all 0.2s;
+    font-size: 13px;
   }
 
-  .icon-btn:hover { background: white; transform: scale(1.05); }
-
-  /* 프로필 섹션 */
+  /* 프로필 섹션 - 컴팩트 */
   .profile-section {
     position: relative;
     z-index: 5;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 24px 20px 20px;
+    padding: 10px 20px 8px;
+    flex-shrink: 0;
   }
 
   .avatar-wrap {
     position: relative;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+  }
+
+  .story-ring {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--warm-white), var(--warm-white)) padding-box,
+                linear-gradient(135deg, #C4956A, #E8B88A, #C4956A) border-box;
   }
 
   .avatar-ring {
-    width: 100px; height: 100px;
+    width: 80px; height: 80px;
     border-radius: 50%;
-    padding: 3px;
+    padding: 2.5px;
     background: linear-gradient(135deg, var(--accent), #E8C49A, var(--accent));
-    animation: ring-spin 6s linear infinite;
-  }
-
-  @keyframes ring-spin {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(20deg) brightness(1.05); }
   }
 
   .avatar-inner {
@@ -154,40 +144,96 @@
     height: 100%;
     border-radius: 50%;
     background: linear-gradient(145deg, #F0E0CC, #E8C9A8);
-    border: 3px solid var(--warm-white);
+    border: 2.5px solid var(--warm-white);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 36px;
-    overflow: hidden;
+    font-size: 28px;
   }
 
-  /* 인스타 스토리 링 효과 */
-  .story-ring {
-    position: absolute;
-    inset: -5px;
-    border-radius: 50%;
-    border: 2.5px solid transparent;
-    background: linear-gradient(var(--warm-white), var(--warm-white)) padding-box,
-                linear-gradient(135deg, #C4956A, #E8B88A, #C4956A, #A07848) border-box;
-    animation: story-pulse 3s ease-in-out infinite;
+  .handle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    margin-top: 8px;
   }
 
-  @keyframes story-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--charcoal);
+    letter-spacing: 3px;
+    margin-top: 2px;
+    line-height: 1;
   }
 
-  /* 인스타 스타일 스탯 */
+  .brand-sub {
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-top: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .bio {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 6px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* 팔로우 버튼 */
+  .follow-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .btn-follow {
+    flex: 1;
+    padding: 7px 0;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-msg {
+    flex: 1;
+    padding: 7px 0;
+    background: transparent;
+    color: var(--charcoal);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  /* 인스타 스탯 */
   .insta-stats {
     display: flex;
     gap: 0;
-    margin: 14px 0 10px;
+    margin: 10px 0 0;
     background: rgba(255,255,255,0.6);
-    border-radius: 16px;
+    border-radius: 14px;
     border: 1px solid var(--border);
     overflow: hidden;
-    backdrop-filter: blur(8px);
+    width: 100%;
+    max-width: 280px;
   }
 
   .stat-item {
@@ -195,9 +241,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 12px 8px;
+    padding: 8px 6px;
     cursor: pointer;
-    transition: background 0.2s;
     position: relative;
   }
 
@@ -209,68 +254,27 @@
     background: var(--border);
   }
 
-  .stat-item:hover { background: rgba(196,149,106,0.08); }
-
   .stat-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 400;
     color: var(--charcoal);
     line-height: 1;
   }
 
   .stat-label {
-    font-size: 10px;
+    font-size: 9px;
     color: var(--muted);
-    margin-top: 3px;
+    margin-top: 2px;
     font-weight: 300;
-    letter-spacing: 0.3px;
   }
 
-  .handle {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
-    color: var(--muted);
-    letter-spacing: 1.5px;
-    margin-top: 10px;
-  }
-
-  .brand-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 300;
-    color: var(--charcoal);
-    letter-spacing: 3px;
-    margin-top: 4px;
-    line-height: 1;
-  }
-
-  .brand-sub {
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 2px;
-    margin-top: 5px;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-
-  .bio {
-    font-size: 12px;
-    color: var(--muted);
-    text-align: center;
-    margin-top: 10px;
-    line-height: 1.7;
-    font-weight: 300;
-    max-width: 260px;
-  }
-
-  /* 인스타 하이라이트 스타일 */
+  /* 하이라이트 */
   .highlights {
     display: flex;
-    gap: 14px;
-    padding: 4px 24px 16px;
-    overflow-x: auto;
-    scrollbar-width: none;
+    gap: 12px;
+    padding: 8px 20px 4px;
+    flex-shrink: 0;
     position: relative;
     z-index: 5;
     justify-content: center;
@@ -280,13 +284,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     cursor: pointer;
-    flex-shrink: 0;
   }
 
   .highlight-ring {
-    width: 58px; height: 58px;
+    width: 50px; height: 50px;
     border-radius: 50%;
     padding: 2px;
     background: linear-gradient(135deg, var(--accent), #E8C49A);
@@ -301,105 +304,120 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .highlight-label {
-    font-size: 10px;
+    font-size: 9px;
     color: var(--charcoal);
     font-weight: 300;
-    letter-spacing: 0.2px;
   }
 
-  /* 링크 섹션 */
+  /* 구분선 */
+  .divider-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 6px 20px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 5;
+  }
+
+  /* 링크 섹션 - flex grow로 남은 공간 채움 */
   .links-section {
-    padding: 8px 24px 32px;
+    padding: 6px 20px 16px;
     position: relative;
     z-index: 5;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    flex: 1;
+    justify-content: space-between;
   }
 
-  .section-label {
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 4px;
-    font-weight: 400;
+  .links-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+    justify-content: space-evenly;
   }
 
   .link-card {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 14px 18px;
+    gap: 12px;
+    padding: 11px 16px;
     background: rgba(255,255,255,0.75);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 14px;
     cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.2s;
     backdrop-filter: blur(8px);
-    position: relative;
-    overflow: hidden;
     text-decoration: none;
   }
 
-  .link-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(196,149,106,0.06) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
   .link-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(196,149,106,0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(196,149,106,0.18);
     border-color: var(--accent);
   }
 
-  .link-card:hover::before { opacity: 1; }
-
-  .link-card:active { transform: scale(0.98); }
-
   .link-icon-wrap {
-    width: 44px; height: 44px;
-    border-radius: 12px;
+    width: 38px; height: 38px;
+    border-radius: 10px;
     background: linear-gradient(145deg, #F0E8DC, #E8D5BC);
     border: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 20px;
-    overflow: hidden;
+    font-size: 18px;
   }
 
-  .link-icon-wrap img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    border-radius: 12px;
+  .kakao-icon {
+    background: #FEE500;
+    border-radius: 10px;
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
   }
 
-  .link-text {
-    flex: 1;
+  .naver-icon {
+    background: #03C75A;
+    border-radius: 10px;
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: white;
+    flex-shrink: 0;
   }
+
+  .insta-icon {
+    background: linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    border-radius: 10px;
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    color: white;
+  }
+
+  .link-text { flex: 1; }
 
   .link-title {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: var(--charcoal);
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
   }
 
   .link-desc {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--muted);
-    margin-top: 2px;
+    margin-top: 1px;
     font-weight: 300;
   }
 
@@ -407,123 +425,32 @@
     color: var(--accent);
     font-size: 16px;
     opacity: 0.6;
-    transition: all 0.2s;
   }
 
-  .link-card:hover .link-arrow {
-    opacity: 1;
-    transform: translateX(2px);
-  }
-
-  /* 카카오 특별 스타일 */
-  .kakao-icon {
-    background: #FEE500;
-    border-radius: 12px;
-    width: 44px; height: 44px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-
-  /* 네이버 블로그 */
-  .naver-icon {
-    background: #03C75A;
-    border-radius: 12px;
-    width: 44px; height: 44px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    color: white;
-    flex-shrink: 0;
-  }
-
-  /* 인스타 아이콘 */
-  .insta-icon {
-    background: linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-    border-radius: 12px;
-    width: 44px; height: 44px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-    color: white;
-  }
-
-  /* 구분선 */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
-    margin: 4px 0;
-  }
-
-  /* 하단 watermark */
   .footer {
     text-align: center;
-    padding: 0 0 28px;
-    font-size: 10px;
+    font-size: 9px;
     color: var(--accent-light);
     letter-spacing: 1px;
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
+    flex-shrink: 0;
+    padding-bottom: 8px;
     position: relative;
     z-index: 5;
   }
 
-  /* 팔로우 버튼 */
-  .follow-row {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .btn-follow {
-    flex: 1;
-    padding: 9px 0;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    font-family: 'Noto Sans KR', sans-serif;
-    transition: all 0.2s;
-    letter-spacing: 0.5px;
-  }
-
-  .btn-follow:hover { background: #B08458; transform: translateY(-1px); }
-
-  .btn-msg {
-    flex: 1;
-    padding: 9px 0;
-    background: transparent;
-    color: var(--charcoal);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    font-size: 13px;
-    font-weight: 400;
-    cursor: pointer;
-    font-family: 'Noto Sans KR', sans-serif;
-    transition: all 0.2s;
-    letter-spacing: 0.5px;
-  }
-
-  .btn-msg:hover { background: rgba(196,149,106,0.08); transform: translateY(-1px); }
-
-  /* 애니메이션 */
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(16px); }
+    from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .profile-section { animation: fadeInUp 0.5s ease forwards; }
-  .link-card:nth-child(1) { animation: fadeInUp 0.4s 0.2s ease both; }
-  .link-card:nth-child(2) { animation: fadeInUp 0.4s 0.3s ease both; }
-  .link-card:nth-child(3) { animation: fadeInUp 0.4s 0.4s ease both; }
-  .link-card:nth-child(4) { animation: fadeInUp 0.4s 0.5s ease both; }
-  .link-card:nth-child(5) { animation: fadeInUp 0.4s 0.6s ease both; }
+  .profile-section { animation: fadeInUp 0.4s ease forwards; }
+  .link-card:nth-child(1) { animation: fadeInUp 0.4s 0.15s ease both; }
+  .link-card:nth-child(2) { animation: fadeInUp 0.4s 0.22s ease both; }
+  .link-card:nth-child(3) { animation: fadeInUp 0.4s 0.29s ease both; }
+  .link-card:nth-child(4) { animation: fadeInUp 0.4s 0.36s ease both; }
+  .link-card:nth-child(5) { animation: fadeInUp 0.4s 0.43s ease both; }
 </style>
 </head>
 <body>
@@ -550,23 +477,14 @@
         <div class="avatar-inner">🎨</div>
       </div>
     </div>
-
     <div class="handle">@ewah_art</div>
     <div class="brand-name">EWAH ART</div>
     <div class="brand-sub">이화미술</div>
-
-    <div class="bio">
-      감성을 그리는 공간 🖌️<br>
-      아이들의 창의력을 키워드리는 미술 교육
-    </div>
-
-    <!-- 팔로우 버튼 (인스타 스타일) -->
+    <div class="bio">감성을 그리는 공간 🖌️ · 아이들의 창의력을 키워드리는 미술 교육</div>
     <div class="follow-row">
       <button class="btn-follow">팔로우</button>
       <button class="btn-msg">메시지</button>
     </div>
-
-    <!-- 인스타 스탯 -->
     <div class="insta-stats">
       <div class="stat-item">
         <span class="stat-num">248</span>
@@ -586,81 +504,73 @@
   <!-- 하이라이트 -->
   <div class="highlights">
     <div class="highlight-item">
-      <div class="highlight-ring">
-        <div class="highlight-circle">🖼️</div>
-      </div>
+      <div class="highlight-ring"><div class="highlight-circle">🖼️</div></div>
       <span class="highlight-label">작품</span>
     </div>
     <div class="highlight-item">
-      <div class="highlight-ring">
-        <div class="highlight-circle">🎨</div>
-      </div>
+      <div class="highlight-ring"><div class="highlight-circle">🎨</div></div>
       <span class="highlight-label">수업</span>
     </div>
     <div class="highlight-item">
-      <div class="highlight-ring">
-        <div class="highlight-circle">🏫</div>
-      </div>
+      <div class="highlight-ring"><div class="highlight-circle">🏫</div></div>
       <span class="highlight-label">공간</span>
     </div>
     <div class="highlight-item">
-      <div class="highlight-ring">
-        <div class="highlight-circle">🏆</div>
-      </div>
+      <div class="highlight-ring"><div class="highlight-circle">🏆</div></div>
       <span class="highlight-label">수상</span>
     </div>
   </div>
 
-  <!-- 링크 섹션 -->
+  <div class="divider-line"></div>
+
+  <!-- 링크 5개 -->
   <div class="links-section">
-    <div class="section-label">링크</div>
+    <div class="links-inner">
+      <a class="link-card" href="#">
+        <div class="link-icon-wrap">🎨</div>
+        <div class="link-text">
+          <div class="link-title">이화미술</div>
+          <div class="link-desc">공식 홈페이지</div>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
 
-    <a class="link-card" href="#">
-      <div class="link-icon-wrap">🎨</div>
-      <div class="link-text">
-        <div class="link-title">이화미술</div>
-        <div class="link-desc">공식 홈페이지</div>
-      </div>
-      <span class="link-arrow">›</span>
-    </a>
+      <a class="link-card" href="#">
+        <div class="link-icon-wrap">📍</div>
+        <div class="link-text">
+          <div class="link-title">이화미술 위치안내</div>
+          <div class="link-desc">찾아오시는 길</div>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
 
-    <a class="link-card" href="#">
-      <div class="link-icon-wrap">📍</div>
-      <div class="link-text">
-        <div class="link-title">이화미술 위치안내</div>
-        <div class="link-desc">찾아오시는 길</div>
-      </div>
-      <span class="link-arrow">›</span>
-    </a>
+      <a class="link-card" href="#">
+        <div class="kakao-icon">💬</div>
+        <div class="link-text">
+          <div class="link-title">1:1 카카오톡 채팅</div>
+          <div class="link-desc">빠른 상담 문의</div>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
 
-    <div class="divider"></div>
+      <a class="link-card" href="#">
+        <div class="insta-icon">📷</div>
+        <div class="link-text">
+          <div class="link-title">인스타그램</div>
+          <div class="link-desc">@ewah_art · 일상 & 작품</div>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
 
-    <a class="link-card" href="#">
-      <div class="kakao-icon">💬</div>
-      <div class="link-text">
-        <div class="link-title">1:1 카카오톡 채팅</div>
-        <div class="link-desc">빠른 상담 문의</div>
-      </div>
-      <span class="link-arrow">›</span>
-    </a>
-
-    <a class="link-card" href="#">
-      <div class="insta-icon">📷</div>
-      <div class="link-text">
-        <div class="link-title">인스타그램</div>
-        <div class="link-desc">@ewah_art · 일상 & 작품</div>
-      </div>
-      <span class="link-arrow">›</span>
-    </a>
-
-    <a class="link-card" href="#">
-      <div class="naver-icon">blog</div>
-      <div class="link-text">
-        <div class="link-title">네이버 블로그</div>
-        <div class="link-desc">수업 후기 & 미술 이야기</div>
-      </div>
-      <span class="link-arrow">›</span>
-    </a>
+      <a class="link-card" href="#">
+        <div class="naver-icon">blog</div>
+        <div class="link-text">
+          <div class="link-title">네이버 블로그</div>
+          <div class="link-desc">수업 후기 & 미술 이야기</div>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+    </div>
   </div>
 
   <div class="footer">ewah art · 이화미술</div>

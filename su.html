@@ -90,12 +90,12 @@
     }
 
     .gallery-desc {
-      padding: 25px 20px 10px;
+      padding: 15px 20px 5px;
       text-align: center;
       color: #FFFFFF;
       font-size: 14px;
       font-weight: 300;
-      line-height: 1.6;
+      line-height: 1.4;
       font-family: 'Jalnan', sans-serif;
       z-index: 2;
     }
@@ -105,9 +105,9 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       position: relative;
-      padding: 10px 0 30px;
+      padding: 10px 0 20px;
       z-index: 2;
     }
 
@@ -197,7 +197,7 @@
     /* 컨트롤러 (화살표) */
     .ctrl-btn {
       position: absolute;
-      top: 42%;
+      top: 50%;
       transform: translateY(-50%);
       width: 44px;
       height: 44px;
@@ -352,11 +352,10 @@
             </div>
           </div>
         </div>
+        <!-- 좌우 화살표를 viewport 안으로 이동 -->
+        <div class="ctrl-btn prev" id="prevBtn">‹</div>
+        <div class="ctrl-btn next" id="nextBtn">›</div>
       </div>
-
-      <!-- 좌우 화살표 -->
-      <div class="ctrl-btn prev" id="prevBtn">‹</div>
-      <div class="ctrl-btn next" id="nextBtn">›</div>
 
       <!-- 도트 인디케이터 -->
       <div class="indicators" id="indicators">

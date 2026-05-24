@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이화미술공작소 - 수상 기록</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Jalnan';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #E8F8F7;
+      --card-bg: #FFFFFF;
+      --charcoal: #122A29;
+      --muted: #2E4746;
+      --accent: #122A29;
+      --warm-white: #0ABAB5;
+      --border: rgba(18, 42, 41, 0.12);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--charcoal);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: var(--warm-white);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .back-btn {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-size: 24px;
+      line-height: 1;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #FFFFFF;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: var(--border);
+    }
+
+    .header-title {
+      font-family: 'Jalnan', sans-serif;
+      font-size: 20px;
+      letter-spacing: 1px;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .gallery-desc {
+      padding: 25px 20px 15px;
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.6;
+      font-family: 'Jalnan', sans-serif;
+    }
+
+    .awards-list {
+      padding: 0 20px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .award-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 6px 18px rgba(18, 42, 41, 0.06);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .award-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(18, 42, 41, 0.12);
+      border-color: #FFFFFF;
+    }
+
+    .image-container {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #E8F8F7;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .award-card:hover .image-container img {
+      transform: scale(1.03);
+    }
+
+    .award-info {
+      margin-top: 12px;
+      padding: 4px 6px;
+    }
+
+    .award-tag {
+      display: inline-block;
+      font-size: 10px;
+      background: var(--bg);
+      color: var(--charcoal);
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      font-family: 'Jalnan', sans-serif;
+    }
+
+    .award-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--charcoal);
+    }
+
+    .award-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .footer {
+      margin-top: auto;
+      padding: 20px;
+      text-align: center;
+      font-size: 10px;
+      color: #E8F8F7;
+      letter-spacing: 1px;
+      border-top: 1px solid var(--border);
+      font-family: 'Cormorant Garamond', serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="index.html" class="back-btn">←</a>
+      <h1 class="header-title">AWARDS</h1>
+    </div>
+
+    <div class="gallery-desc">
+      🏆 이화미술공작소의 자랑스러운 수상 현황입니다.<br>아이들의 창의력이 빚어낸 결실을 만나보세요.
+    </div>
+
+    <div class="awards-list">
+      <!-- 수상 01 -->
+      <div class="award-card">
+        <div class="image-container">
+          <img src="수상01.PNG" alt="이화미술공작소 수상작 01">
+        </div>
+        <div class="award-info">
+          <span class="award-tag">HONOR 01</span>
+          <div class="award-title">우수 미술 지도자상 수상</div>
+          <div class="award-subtitle">아이들의 잠재력을 끌어올리는 창의 지도력 인증</div>
+        </div>
+      </div>
+
+      <!-- 수상 02 -->
+      <div class="award-card">
+        <div class="image-container">
+          <img src="수상02.PNG" alt="이화미술공작소 수상작 02">
+        </div>
+        <div class="award-info">
+          <span class="award-tag">HONOR 02</span>
+          <div class="award-title">전국 아동 미술 대회 최우수상</div>
+          <div class="award-subtitle">남다른 표현력과 풍부한 예술적 감수성</div>
+        </div>
+      </div>
+
+      <!-- 수상 03 -->
+      <div class="award-card">
+        <div class="image-container">
+          <img src="수상03.PNG" alt="이화미술공작소 수상작 03">
+        </div>
+        <div class="award-info">
+          <span class="award-tag">HONOR 03</span>
+          <div class="award-title">창의 융합 예술 우수 교육 기관</div>
+          <div class="award-subtitle">체계적인 커리큘럼과 전문 강사진의 교육 성과</div>
+        </div>
+      </div>
+
+      <!-- 수상 04 -->
+      <div class="award-card">
+        <div class="image-container">
+          <img src="수상04.PNG" alt="이화미술공작소 수상작 04">
+        </div>
+        <div class="award-info">
+          <span class="award-tag">HONOR 04</span>
+          <div class="award-title">세계 아동 미술 공모전 입상</div>
+          <div class="award-subtitle">글로벌 무대에서 빛난 창의성과 독창적 색채</div>
+        </div>
+      </div>
+
+      <!-- 수상 05 -->
+      <div class="award-card">
+        <div class="image-container">
+          <img src="수상05.PNG" alt="이화미술공작소 수상작 05">
+        </div>
+        <div class="award-info">
+          <span class="award-tag">HONOR 05</span>
+          <div class="award-title">우수 미술 학원 공로상</div>
+          <div class="award-subtitle">지속적인 예술 인재 양성 및 교육 환경 공헌</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">ewah art · 이화미술공작소</div>
+  </div>
+</body>
+
+</html>

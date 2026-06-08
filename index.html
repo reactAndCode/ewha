@@ -551,6 +551,76 @@
     .link-card:nth-child(5) {
       animation: fadeInUp 0.4s 0.43s ease both;
     }
+
+    /* 귀여운 원장소개 배지 스타일 */
+    .avatar-badge {
+      position: absolute;
+      top: 50%;
+      background: #FFD54F; /* 산뜻하고 따뜻한 노란색 */
+      color: #5D4037; /* 부드러운 브라운 텍스트 */
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-family: 'Jalnan', sans-serif;
+      text-decoration: none;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+      box-shadow: 0 4px 10px rgba(18, 42, 41, 0.15);
+      border: 1.5px solid #FFF;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .avatar-badge.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .badge-left {
+      right: calc(50% + 52px);
+      transform: translateY(-50%) translateX(10px);
+      animation: cuteBounceLeft 2s infinite ease-in-out;
+    }
+
+    .badge-left.active {
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .badge-right {
+      left: calc(50% + 52px);
+      transform: translateY(-50%) translateX(-10px);
+      animation: cuteBounceRight 2s infinite ease-in-out;
+    }
+
+    .badge-right.active {
+      transform: translateY(-50%) translateX(0);
+    }
+
+    /* 호버 시 통통 튀는 애니메이션 */
+    .avatar-badge:hover {
+      background: #FFCA28;
+      transform: translateY(-55%) scale(1.08) !important;
+      box-shadow: 0 6px 14px rgba(18, 42, 41, 0.25);
+    }
+
+    @keyframes cuteBounceLeft {
+      0%, 100% {
+        transform: translateY(-50%) translateX(0) scale(1);
+      }
+      50% {
+        transform: translateY(-58%) translateX(-2px) scale(1.03);
+      }
+    }
+
+    @keyframes cuteBounceRight {
+      0%, 100% {
+        transform: translateY(-50%) translateX(0) scale(1);
+      }
+      50% {
+        transform: translateY(-58%) translateX(2px) scale(1.03);
+      }
+    }
   </style>
 </head>
 
@@ -574,6 +644,12 @@
     <div class="profile-section">
       <div class="avatar-wrap">
         <div class="story-ring"></div>
+
+        <!-- 왼쪽 원장소개 배지 -->
+        <a href="teacher.html" class="avatar-badge badge-left" id="badge-left">
+          원장소개 👈
+        </a>
+
         <div class="avatar-ring">
           <div class="avatar-slides">
             <div class="avatar-slide active" id="slide0">
@@ -584,6 +660,11 @@
             </div>
           </div>
         </div>
+
+        <!-- 오른쪽 원장소개 배지 -->
+        <a href="teacher.html" class="avatar-badge badge-right" id="badge-right">
+          👉 원장소개
+        </a>
 
       </div>
       <div class="handle">@ewah_art_min</div>
@@ -652,12 +733,11 @@
     <!-- 하이라이트 -->
     <div class="highlights">
       <div class="highlight-item">
-        <a class="highlight-item" href="jak.html" target="_blank"
-          style="text-decoration: none;">
+        <a class="highlight-item" href="jak.html" target="_blank" style="text-decoration: none;">
           <div class="highlight-ring">
             <div class="highlight-circle">🖼️</div>
           </div>
-          <span class="highlight-label">수업</span>
+          <span class="highlight-label">학년별수업</span>
         </a>
       </div>
       <a class="highlight-item" href="https://m.blog.naver.com/sodamc93/clip/8284755" target="_blank"
@@ -677,12 +757,11 @@
         </a>
       </div>
       <div class="highlight-item">
-        <a class="highlight-item" href="su.html"
-          style="text-decoration: none;">
+        <a class="highlight-item" href="su.html" style="text-decoration: none;">
           <div class="highlight-ring">
             <div class="highlight-circle">🏆</div>
           </div>
-          <span class="highlight-label">수상</span>
+          <span class="highlight-label">수상내역</span>
         </a>
       </div>
     </div>
@@ -718,13 +797,33 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const slides = document.querySelectorAll('.avatar-slide');
+      const badgeLeft = document.getElementById('badge-left');
+      const badgeRight = document.getElementById('badge-right');
       let currentSlide = 0;
+
+      // 초기 활성화 상태 설정 (첫 슬라이드가 로고일 때 오른쪽 배지 활성화)
+      badgeRight.classList.add('active');
 
       setInterval(() => {
         slides[currentSlide].classList.remove('active');
+        
+        // 현재 활성화되어 있던 배지 비활성화
+        if (currentSlide === 0) {
+          badgeRight.classList.remove('active');
+        } else {
+          badgeLeft.classList.remove('active');
+        }
+
         currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add('active');
-      }, 3000); // 10초마다 변경
+
+        // 새로운 슬라이드에 해당하는 배지 활성화
+        if (currentSlide === 0) {
+          badgeRight.classList.add('active');
+        } else {
+          badgeLeft.classList.add('active');
+        }
+      }, 3000); // 3초마다 변경
     });
   </script>
 </body>

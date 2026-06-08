@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>정소담 원장 소개 | 이화미술공작소</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Jalnan';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --insta-bg: #FFFFFF;
+      --insta-gray: #FAFAFA;
+      --insta-border: #DBDBDB;
+      --insta-text-main: #262626;
+      --insta-text-sub: #737373;
+      --insta-blue: #0095F6;
+      --insta-blue-hover: #1877F2;
+      --insta-gradient: linear-gradient(45deg, #f99f1b, #e2306c, #8a3ab9);
+      --cream: #E8F8F7;
+      --warm-white: #0ABAB5;
+      --charcoal: #122A29;
+      --muted: #2E4746;
+      --accent: #122A29;
+    }
+
+    body {
+      background: #E8F8F7;
+      font-family: 'Noto Sans KR', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: var(--insta-text-main);
+    }
+
+    /* 폰 프레임 데스크톱 뷰 */
+    .phone-frame {
+      width: 390px;
+      height: 844px;
+      background: var(--insta-bg);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      border-radius: 40px;
+      border: 8px solid #122A29;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 상단 상태 바 영역 & 헤더 */
+    .insta-header {
+      height: 60px;
+      border-bottom: 1px solid var(--insta-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      background: #fff;
+      z-index: 10;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--insta-text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      text-decoration: none;
+    }
+
+    .header-title {
+      font-family: 'Jalnan', sans-serif;
+      font-size: 15px;
+      font-weight: normal;
+      color: var(--insta-text-main);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .verified-badge {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      background: var(--insta-blue);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 8px;
+      text-align: center;
+      line-height: 14px;
+      font-weight: bold;
+    }
+
+    .header-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .header-icon {
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* 스크롤 가능한 본문 영역 */
+    .scroll-container {
+      flex: 1;
+      overflow-y: auto;
+      background: var(--insta-bg);
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* 프로필 요약 정보 */
+    .profile-info {
+      padding: 16px 16px 10px;
+    }
+
+    .profile-meta-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    /* 스토리 링을 가진 아바타 */
+    .avatar-container {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--insta-gradient);
+      padding: 3px;
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #fff;
+      padding: 2px;
+    }
+
+    .avatar-inner img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* 통계치 */
+    .stats-container {
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+      margin-left: 10px;
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--insta-text-main);
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      color: var(--insta-text-sub);
+      margin-top: 2px;
+    }
+
+    /* 소개 정보 (Bio) */
+    .bio-container {
+      margin-bottom: 16px;
+    }
+
+    .bio-name {
+      font-family: 'Jalnan', sans-serif;
+      font-size: 15px;
+      font-weight: normal;
+      margin-bottom: 4px;
+    }
+
+    .bio-tag {
+      font-size: 12px;
+      color: var(--insta-text-sub);
+      margin-bottom: 6px;
+    }
+
+    .bio-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* 중등정교사 강조 */
+    .teacher-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(10, 186, 181, 0.1);
+      border: 1px solid rgba(10, 186, 181, 0.3);
+      padding: 6px 10px;
+      border-radius: 8px;
+      margin: 8px 0;
+      color: var(--warm-white);
+      font-weight: 700;
+      font-size: 12.5px;
+    }
+
+    .teacher-badge span {
+      background: linear-gradient(45deg, #ffd700, #ff8c00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 14px;
+    }
+
+    .bio-link {
+      color: #00376B;
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+      margin-top: 6px;
+    }
+
+    /* 프로필 편집/메시지 버튼 */
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .btn-action {
+      flex: 1;
+      height: 32px;
+      border-radius: 8px;
+      border: none;
+      background: #efefef;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--insta-text-main);
+      transition: background 0.2s;
+    }
+
+    .btn-action:hover {
+      background: #dbdbdb;
+    }
+
+    .btn-action.primary {
+      background: var(--insta-blue);
+      color: #fff;
+    }
+
+    .btn-action.primary:hover {
+      background: var(--insta-blue-hover);
+    }
+
+    /* 스토리 하이라이트 */
+    .highlights-container {
+      display: flex;
+      gap: 14px;
+      padding: 0 16px 16px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--insta-border);
+    }
+
+    .highlights-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .highlight-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .highlight-ring {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 1px solid var(--insta-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--insta-gray);
+      margin-bottom: 6px;
+      padding: 3px;
+      transition: transform 0.2s;
+    }
+
+    .highlight-unit:hover .highlight-ring {
+      transform: scale(1.05);
+      border-color: var(--warm-white);
+    }
+
+    .highlight-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      border: 1px solid #eee;
+    }
+
+    .highlight-lbl {
+      font-size: 11px;
+      color: var(--insta-text-main);
+      max-width: 64px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 탭 메뉴 */
+    .tabs-nav {
+      display: flex;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      background: #fff;
+    }
+
+    .tab-item {
+      flex: 1;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--insta-text-sub);
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab-item.active {
+      color: var(--insta-text-main);
+      border-bottom-2px: 2px solid var(--insta-text-main);
+    }
+
+    .tab-icon {
+      font-size: 18px;
+    }
+
+    /* 피드 그리드 리스트 */
+    .feed-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      padding: 3px;
+    }
+
+    .grid-item {
+      aspect-ratio: 1 / 1;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: #f2f2f2;
+    }
+
+    .grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .grid-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
+      gap: 12px;
+    }
+
+    .grid-item:hover .grid-overlay {
+      opacity: 1;
+    }
+
+    /* 피드용 배지 표시 */
+    .post-badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 10px;
+      padding: 3px 6px;
+      border-radius: 10px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* 팝업 모달 - 인스타 상세 포스트 스타일 */
+    .post-modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 32px;
+      /* 폰 프레임에 맞춤 */
+      padding: 20px;
+    }
+
+    .post-modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-height: 90%;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: modalUp 0.3s cubic-bezier(0.1, 0.8, 0.25, 1);
+    }
+
+    @keyframes modalUp {
+      from {
+        transform: translateY(50px);
+      }
+
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      height: 48px;
+      border-bottom: 1px solid var(--insta-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+    }
+
+    .modal-user {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .modal-username {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--insta-text-main);
+    }
+
+    .modal-body {
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-img-wrap {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-details {
+      padding: 12px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 14px;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .modal-likes {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .modal-caption {
+      font-size: 13.5px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .modal-time {
+      font-size: 10px;
+      color: var(--insta-text-sub);
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    /* 스토리 재생 팝업 (Full Screen) */
+    .story-viewer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 200;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+    }
+
+    .story-viewer.show {
+      display: flex;
+    }
+
+    .story-progress-bar {
+      display: flex;
+      gap: 4px;
+      padding: 10px 10px 4px;
+    }
+
+    .story-bar-bg {
+      flex: 1;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .story-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #fff;
+    }
+
+    .story-viewer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+    }
+
+    .story-profile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .story-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      object-fit: cover;
+    }
+
+    .story-name {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .story-time {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .story-viewer-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .story-viewer-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .story-content-card {
+      width: 100%;
+      max-height: 80%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .story-icon {
+      font-size: 50px;
+      margin-bottom: 16px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .story-title {
+      font-size: 18px;
+      font-family: 'Jalnan', sans-serif;
+      margin-bottom: 12px;
+      color: #FFF;
+    }
+
+    .story-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #e0e0e0;
+      word-break: keep-all;
+    }
+
+    /* 네비게이션 탭용 애니메이션 하단바 구현 */
+    .tab-item.active .tab-icon {
+      transform: scale(1.1);
+      color: var(--warm-white);
+    }
+
+    /* 하단 네비게이션 바 고정 (실제 인스타앱처럼) */
+    .bottom-nav {
+      height: 48px;
+      border-top: 1px solid var(--insta-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .nav-icon {
+      font-size: 20px;
+      color: var(--insta-text-main);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .nav-icon.active {
+      color: var(--warm-white);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="phone-frame">
+    <!-- 인스타그램 헤더 -->
+    <header class="insta-header">
+      <a href="index.html" class="back-btn" title="이전으로">
+        &#10094;
+      </a>
+      <div class="header-title">
+        이화미술 선생님 소개
+        <span class="verified-badge" title="공식 인증">✓</span>
+      </div>
+      <div class="header-icons">
+        <span class="header-icon" title="알림">&#128276;</span>
+        <span class="header-icon" title="옵션">&#8942;</span>
+      </div>
+    </header>
+
+    <!-- 스크롤 가능한 본문 영역 -->
+    <div class="scroll-container">
+      <!-- 프로필 정보 -->
+      <section class="profile-info">
+        <!--
+        <div class="profile-meta-row" >
+          
+          <div class="avatar-container" onclick="openStory(0)" title="원장님 스토리 보기">
+            <div class="avatar-ring"></div>
+            <div class="avatar-inner">
+              <img src="teacher_profile.png" alt="정소담 원장 프로필 사진">
+            </div>
+          </div>
+          
+          <div class="stats-container">
+            <div class="stat-box">
+              <div class="stat-val">6</div>
+              <div class="stat-lbl">게시물</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">2,026</div>
+              <div class="stat-lbl">팔로워</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">312</div>
+              <div class="stat-lbl">팔로잉</div>
+            </div>
+          </div>
+        </div>
+-->
+
+        <!-- 바이오그래피 (BIO) -->
+        <div class="bio-container">
+          <h1 class="bio-name">정소담 <span
+              style="font-size: 13px; font-weight: normal; color: var(--insta-text-sub);">Jung Sodam</span></h1>
+          <div class="bio-tag">이화미술공작소 대표원장</div>
+
+          <!-- 중등정교사 강조 배지 -->
+          <div class="teacher-badge">
+            <span>👑</span> <strong>국가공인 중등 2급 정교사 자격 보유</strong>
+          </div>
+
+          <div class="bio-text">
+            🎓 이화여자대학교 미술 전공<br>
+            👔 세계적 한복 브랜드 <strong>[메종 드 이영희]</strong> 디자이너 출신<br>
+            💎 스타(문근영, 수애 등) 주얼리 및 액세서리 스타일링 디렉터<br>
+            📺 tvN 드라마 &lt;마우스&gt; 촬영 및 다큐멘터리 미술 자문 화실<br>
+            📰 더모스트타임즈 & 시선뉴스 미술교육 명인 선정 인터뷰 원장
+          </div>
+          <a href="https://blog.naver.com/sodamc93/223706834925" target="_blank" class="bio-link">
+            🔗 blog.naver.com/sodamc93/223706834925
+          </a>
+        </div>
+
+        <!-- 액션 버튼 -->
+        <div class="action-buttons">
+          <button class="btn-action primary" onclick="alert('정소담 원장님을 팔로우했습니다! 😊')">팔로우</button>
+          <button class="btn-action" onclick="location.href='https://open.kakao.com/o/sCpZZ7vi'">메시지</button>
+          <button class="btn-action" onclick="alert('이메일: sodamc93@naver.com\n문의 번호는 1:1 톡으로 부탁드립니다!')">문의하기</button>
+        </div>
+      </section>
+
+      <!-- 스토리 하이라이트 -->
+      <section class="highlights-container">
+        <div class="highlight-unit" onclick="openStory(0)">
+          <div class="highlight-ring">
+            <div class="highlight-circle">👑</div>
+          </div>
+          <span class="highlight-lbl">중등정교사</span>
+        </div>
+        <div class="highlight-unit" onclick="openStory(1)">
+          <div class="highlight-ring">
+            <div class="highlight-circle">🎓</div>
+          </div>
+          <span class="highlight-lbl">이화여대</span>
+        </div>
+        <div class="highlight-unit" onclick="openStory(2)">
+          <div class="highlight-ring">
+            <div class="highlight-circle">👔</div>
+          </div>
+          <span class="highlight-lbl">디자이너</span>
+        </div>
+        <div class="highlight-unit" onclick="openStory(3)">
+          <div class="highlight-ring">
+            <div class="highlight-circle">📺</div>
+          </div>
+          <span class="highlight-lbl">드라마 촬영</span>
+        </div>
+        <div class="highlight-unit" onclick="openStory(4)">
+          <div class="highlight-ring">
+            <div class="highlight-circle">📰</div>
+          </div>
+          <span class="highlight-lbl">인터뷰</span>
+        </div>
+      </section>
+
+      <!-- 탭 메뉴 -->
+      <nav class="tabs-nav">
+        <div class="tab-item active" onclick="switchTab('feed')">
+          <span class="tab-icon">▦</span>
+        </div>
+        <div class="tab-item" onclick="switchTab('reels')">
+          <span class="tab-icon">🎬</span>
+        </div>
+        <div class="tab-item" onclick="switchTab('tagged')">
+          <span class="tab-icon">👤</span>
+        </div>
+      </nav>
+
+      <!-- 피드 콘텐츠 리스트 (그리드) -->
+      <section class="feed-grid" id="tab-feed">
+        <!-- 1번 포스트 (중등정교사 강조) -->
+        <div class="grid-item" onclick="openPost(0)">
+          <span class="post-badge">👑 강조</span>
+          <img src="teacher_profile.png" alt="중등정교사">
+          <div class="grid-overlay">
+            <span>❤️ 1,024</span>
+            <span>💬 86</span>
+          </div>
+        </div>
+        <!-- 2번 포스트 (이화여대) -->
+        <div class="grid-item" onclick="openPost(1)">
+          <img src="logo.jpg" alt="이화여대" style="background: #fff; padding: 10px;">
+          <div class="grid-overlay">
+            <span>❤️ 942</span>
+            <span>💬 48</span>
+          </div>
+        </div>
+        <!-- 3번 포스트 (디자이너) -->
+        <div class="grid-item" onclick="openPost(2)">
+          <img src="designer_career.png" alt="메종 드 이영희">
+          <div class="grid-overlay">
+            <span>❤️ 1,180</span>
+            <span>💬 72</span>
+          </div>
+        </div>
+        <!-- 4번 포스트 (주얼리 스타일링) -->
+        <div class="grid-item" onclick="openPost(3)">
+          <img src="img2.png" alt="액세서리 디자이너">
+          <div class="grid-overlay">
+            <span>❤️ 890</span>
+            <span>💬 39</span>
+          </div>
+        </div>
+        <!-- 5번 포스트 (드라마 촬영) -->
+        <div class="grid-item" onclick="openPost(4)">
+          <img src="studio_interview.png" alt="드라마 촬영지">
+          <div class="grid-overlay">
+            <span>❤️ 1,320</span>
+            <span>💬 114</span>
+          </div>
+        </div>
+        <!-- 6번 포스트 (인터뷰) -->
+        <div class="grid-item" onclick="openPost(5)">
+          <img src="img1.png" alt="더모스트타임즈 인터뷰">
+          <div class="grid-overlay">
+            <span>❤️ 956</span>
+            <span>💬 52</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 릴스 및 태그됨 탭 더미 내용 -->
+      <section id="tab-reels"
+        style="display: none; padding: 40px 20px; text-align: center; color: var(--insta-text-sub); font-size: 13px;">
+        🎥 릴스 준비 중입니다. 인스타그램에서 최신 숏폼 영상을 확인하세요!
+      </section>
+      <section id="tab-tagged"
+        style="display: none; padding: 40px 20px; text-align: center; color: var(--insta-text-sub); font-size: 13px;">
+        👤 태그된 게시물이 없습니다.
+      </section>
+    </div>
+
+    <!-- 하단 네비게이션 바 -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-icon" title="홈">🏠</a>
+      <span class="nav-icon" onclick="alert('검색 기능은 준비 중입니다!')">🔍</span>
+      <span class="nav-icon" onclick="alert('릴스 피드는 준비 중입니다!')">🎬</span>
+      <span class="nav-icon active" title="선생님 소개">👤</span>
+    </nav>
+
+    <!-- 포스트 상세 모달 -->
+    <div class="post-modal" id="postModal" onclick="closePost(event)">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <header class="modal-header">
+          <div class="modal-user">
+            <img src="teacher_profile.png" alt="avatar" class="modal-avatar">
+            <span class="modal-username">sodam_art</span>
+            <span class="verified-badge">✓</span>
+          </div>
+          <button class="modal-close" onclick="closePost(null)">×</button>
+        </header>
+        <div class="modal-body">
+          <div class="modal-img-wrap">
+            <img id="modalImg" src="" alt="Post image">
+          </div>
+          <div class="modal-details">
+            <div class="modal-actions">
+              <span>❤️</span> <span>💬</span> <span>✈️</span>
+            </div>
+            <div class="modal-likes">좋아요 <span id="modalLikes"></span>개</div>
+            <div class="modal-caption" id="modalCaption"></div>
+            <div class="modal-time" id="modalTime"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 스토리 뷰어 모달 -->
+    <div class="story-viewer" id="storyViewer">
+      <!-- 프로그레스 바 -->
+      <div class="story-progress-bar" id="storyProgressContainer">
+        <!-- JS로 동적 할당 -->
+      </div>
+      <!-- 스토리 상단 헤더 -->
+      <div class="story-viewer-header">
+        <div class="story-profile">
+          <img src="teacher_profile.png" alt="profile" class="story-avatar">
+          <span class="story-name">sodam_art</span>
+          <span class="story-time" id="storyTime">2시간 전</span>
+        </div>
+        <button class="story-viewer-close" onclick="closeStory()">×</button>
+      </div>
+      <!-- 스토리 본문 카드 -->
+      <div class="story-viewer-body" onclick="nextStory()">
+        <div class="story-content-card">
+          <div class="story-icon" id="storyIcon">👑</div>
+          <h2 class="story-title" id="storyTitle">스토리 제목</h2>
+          <p class="story-desc" id="storyDesc">스토리 세부 설명</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // 탭 전환 기능
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-item').forEach(item => item.classList.remove('active'));
+      document.getElementById('tab-feed').style.display = 'none';
+      document.getElementById('tab-reels').style.display = 'none';
+      document.getElementById('tab-tagged').style.display = 'none';
+
+      if (tabName === 'feed') {
+        document.querySelector('.tab-item:nth-child(1)').classList.add('active');
+        document.getElementById('tab-feed').style.display = 'grid';
+      } else if (tabName === 'reels') {
+        document.querySelector('.tab-item:nth-child(2)').classList.add('active');
+        document.getElementById('tab-reels').style.display = 'block';
+      } else if (tabName === 'tagged') {
+        document.querySelector('.tab-item:nth-child(3)').classList.add('active');
+        document.getElementById('tab-tagged').style.display = 'block';
+      }
+    }
+
+    // 포스트 데이터
+    const postsData = [
+      {
+        img: 'teacher_profile.png',
+        likes: '1,024',
+        time: '1일 전',
+        caption: '👑 <strong>국가공인 중등 2급 정교사 자격 보유 미술 교육 전문가</strong>\n\n이화미술공작소는 단순한 취미 미술을 넘어 공인된 교육론과 체계적인 커리큘럼을 제공합니다. 국가 검증을 통과한 중등 정교사 원장이 직접 아이들의 시각적 문해력과 창의적 발상을 전문적으로 매니징합니다. 🎨✨\n\n#중등정교사 #미술교육 #전문미술 #이화미술공작소 #문래동미술학원'
+      },
+      {
+        img: 'logo.jpg',
+        likes: '942',
+        time: '3일 전',
+        caption: '🎓 <strong>이화여자대학교 미술 대학 전공의 정통 예술 교육</strong>\n\n이화여대에서 다져진 깊이 있는 예술적 안목과 테크닉을 아이들에게 전수합니다. 체계적인 선과 면의 기초부터 깊이 있는 조형 예술까지, 예술 전문 대학의 탄탄한 뿌리가 담긴 수준 높은 미술을 경험해보세요. 🌸\n\n#이화여자대학교 #이화여대미술 #정통미술 #문래동미술학원 #이화미술'
+      },
+      {
+        img: 'designer_career.png',
+        likes: '1,180',
+        time: '5일 전',
+        caption: '👔 <strong>세계적인 명품 한복 브랜드 [메종 드 이영희] 디자이너 경력</strong>\n\n한국의 아름다움을 세계적인 런웨이에 수놓았던 이영희 디자이너님의 하우스에서 디자이너로 활동하며 쌓은 고품격 미적 시각! 텍스타일과 실루엣의 변주를 아우르는 폭넓은 예술적 감각이 이화미술공작소 교육의 큰 자산이 됩니다. 🧵✨\n\n#이영희디자이너 #메종드이영희 #패션디자이너 #예술적경험 #크리에이티브'
+      },
+      {
+        img: 'img2.png',
+        likes: '890',
+        time: '1주일 전',
+        caption: '💎 <strong>스타 연예인 문근영 · 수애 · 이의정 주얼리 스타일링 참여</strong>\n\n트렌디한 주얼리 디자이너 및 액세서리 스타일링 스페셜리스트로서, 유명 연예인들의 스타일 변신에 참여해왔습니다. 아이들의 자유분방하고 창의적인 매체 융합 수업은 이러한 원장님의 무궁무진한 디자인 필드 경험에서 시작됩니다. 💍👗\n\n#주얼리디자이너 #연예인스타일링 #창의미술 #디자인교육 #융합예술'
+      },
+      {
+        img: 'studio_interview.png',
+        likes: '1,320',
+        time: '2주일 전',
+        caption: '📺 <strong>tvN 드라마 &lt;마우스&gt; 촬영지 협찬 및 공간 디렉션</strong>\n\n이승기 주연의 화제작 tvN 드라마 <마우스>가 촬영된 영감 가득한 화실 공간! 다양한 다큐멘터리 자문 및 미디어 아트 참여를 통해 이화미술공작소는 단순한 교습소를 넘어 문화와 예술이 공존하는 특별한 예술 아카데미로 기능하고 있습니다. 🎬📽️\n\n#드라마촬영지 #tvn마우스 #예술공간 #아틀리에 #이화미술공작소'
+      },
+      {
+        img: 'img1.png',
+        likes: '956',
+        time: '3주일 전',
+        caption: '📰 <strong>더모스트타임즈 & 시선뉴스 미술교육인 선정 단독 인터뷰</strong>\n\n"미술은 단순한 그림 그리기가 아닌, 아이들 스스로의 내면을 표현하고 치유하는 행복의 도구입니다."\n언론이 먼저 알아본 이화미술공작소의 진정성 있는 교육 철학! 2026년에도 한결같이 아이들의 성장을 위해 헌신하겠습니다. ❤️\n\n#언론인터뷰 #교육철학 #미술치유 #창의성교육 #원장정소담'
+      }
+    ];
+
+    // 포스트 모달 열기
+    function openPost(index) {
+      const post = postsData[index];
+      document.getElementById('modalImg').src = post.img;
+      document.getElementById('modalLikes').innerText = post.likes;
+      document.getElementById('modalCaption').innerHTML = post.caption;
+      document.getElementById('modalTime').innerText = post.time;
+      document.getElementById('postModal').classList.add('show');
+    }
+
+    // 포스트 모달 닫기
+    function closePost(event) {
+      if (!event || event.target.id === 'postModal' || event.target.className === 'modal-close') {
+        document.getElementById('postModal').classList.remove('show');
+      }
+    }
+
+    // 스토리 데이터
+    const storiesData = [
+      {
+        icon: '👑',
+        title: '중등정교사 자격 보유',
+        desc: '국가가 인증한 중등 2급 정교사 정식 자격증 보유! 검증받은 전문 교육학 이론과 예술적 노하우를 바탕으로, 아이들의 연령별 인지 및 감성 발달에 맞춘 과학적인 커리큘럼을 전수합니다.'
+      },
+      {
+        icon: '🎓',
+        title: '이화여자대학교 미술 대학',
+        desc: '명문 이화여자대학교에서 순수 미술을 전공하며 깊이 있는 조형 예술 이론과 실기를 마스터했습니다. 정통 미술의 단단한 뿌리가 자라나는 특별한 경험!'
+      },
+      {
+        icon: '👔',
+        title: '메종 드 이영희 디자이너',
+        desc: '세계적인 한복 예술가 이영희 하우스의 전속 디자이너로서 런웨이 컬렉션 작업 및 패션 디자인 실무 총괄. 트렌디하고 화려한 감각을 화실 수업에 유연하게 접목합니다.'
+      },
+      {
+        icon: '💎',
+        title: '연예인 주얼리 스타일러',
+        desc: '문근영, 수애, 이의정 등 명품 배우들의 룩을 돋보이게 한 주얼리 디자이너 활동. 평면적인 캔버스를 넘어 다채로운 오브제와 입체 매체를 자유자재로 다루는 예술 감각!'
+      },
+      {
+        icon: '📺',
+        title: '미디어 & 드라마 촬영 공간',
+        desc: 'tvN 드라마 <마우스> 촬영지 및 각종 아트 다큐멘터리 제작 공간 자문. 영감과 즐거움이 가득하여 아이들이 스스로 오고 싶어 하는 유니크한 아트 스튜디오입니다.'
+      }
+    ];
+
+    let currentStoryIdx = 0;
+    let storyTimer = null;
+    let progressTimer = null;
+    const STORY_DURATION = 4000; // 4초
+
+    // 스토리 모달 열기
+    function openStory(index) {
+      currentStoryIdx = index;
+      const viewer = document.getElementById('storyViewer');
+      viewer.classList.add('show');
+
+      buildStoryProgressBars();
+      renderStoryContent();
+    }
+
+    // 스토리 프로그레스 바 생성
+    function buildStoryProgressBars() {
+      const container = document.getElementById('storyProgressContainer');
+      container.innerHTML = '';
+      for (let i = 0; i < storiesData.length; i++) {
+        const bg = document.createElement('div');
+        bg.className = 'story-bar-bg';
+        const fill = document.createElement('div');
+        fill.className = 'story-bar-fill';
+        fill.id = `story-fill-${i}`;
+        bg.appendChild(fill);
+        container.appendChild(bg);
+      }
+    }
+
+    // 스토리 내용 렌더링 및 프로그레스 애니메이션 시작
+    function renderStoryContent() {
+      // 타이머 청소
+      clearTimeout(storyTimer);
+      clearInterval(progressTimer);
+
+      const story = storiesData[currentStoryIdx];
+      document.getElementById('storyIcon').innerText = story.icon;
+      document.getElementById('storyTitle').innerText = story.title;
+      document.getElementById('storyDesc').innerText = story.desc;
+      document.getElementById('storyTime').innerText = (currentStoryIdx + 1) + '시간 전';
+
+      // 프로그레스 바 리셋 및 채우기
+      for (let i = 0; i < storiesData.length; i++) {
+        const fill = document.getElementById(`story-fill-${i}`);
+        if (i < currentStoryIdx) {
+          fill.style.width = '100%';
+        } else {
+          fill.style.width = '0%';
+        }
+      }
+
+      // 현재 프로그레스 애니메이션
+      const currentFill = document.getElementById(`story-fill-${currentStoryIdx}`);
+      let start = null;
+
+      function animate(timestamp) {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const percent = Math.min((progress / STORY_DURATION) * 100, 100);
+        currentFill.style.width = percent + '%';
+
+        if (progress < STORY_DURATION) {
+          progressTimer = requestAnimationFrame(animate);
+        }
+      }
+      progressTimer = requestAnimationFrame(animate);
+
+      // 다음 스토리 자동 이동
+      storyTimer = setTimeout(() => {
+        nextStory();
+      }, STORY_DURATION);
+    }
+
+    // 다음 스토리로 이동
+    function nextStory() {
+      if (currentStoryIdx < storiesData.length - 1) {
+        currentStoryIdx++;
+        renderStoryContent();
+      } else {
+        closeStory();
+      }
+    }
+
+    // 스토리 모달 닫기
+    function closeStory() {
+      clearTimeout(storyTimer);
+      cancelAnimationFrame(progressTimer);
+      document.getElementById('storyViewer').classList.remove('show');
+    }
+  </script>
+</body>
+
+</html>

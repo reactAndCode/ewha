@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이화미술공작소 후원 내역</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header .tag {
+      display: inline-block;
+      padding: 6px 16px;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      color: #d13b5e;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .header h1 {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.4;
+      margin: 0 0 16px 0;
+      color: #212529;
+      word-break: keep-all;
+    }
+
+    .header p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #6c757d;
+      margin: 0;
+      word-break: keep-all;
+    }
+
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 600px) {
+      .card {
+        flex-direction: row;
+        align-items: stretch;
+      }
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 200px;
+      background-color: #eee;
+      background-size: cover;
+      background-position: center;
+    }
+
+    @media (min-width: 600px) {
+      .card-img {
+        width: 40%;
+        height: auto;
+      }
+    }
+
+    .card-content {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+    }
+
+    @media (min-width: 600px) {
+      .card-content {
+        width: 60%;
+      }
+    }
+
+    .card-category {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0d6efd;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .card-category.domestic {
+      color: #0d6efd;
+    }
+
+    .card-category.overseas {
+      color: #198754;
+    }
+
+    .card-category.local {
+      color: #fd7e14;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #212529;
+      margin: 0 0 12px 0;
+    }
+
+    .card-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #495057;
+      margin: 0;
+      word-break: keep-all;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #dee2e6;
+    }
+
+    .footer-quote {
+      font-size: 16px;
+      font-weight: 600;
+      color: #495057;
+      margin-bottom: 30px;
+    }
+
+    .btn-close {
+      display: inline-block;
+      padding: 14px 40px;
+      background-color: #212529;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-close:hover {
+      background-color: #343a40;
+      transform: translateY(-2px);
+    }
+
+    .btn-close:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="tag">Ewha Art Giving</div>
+      <h1>아이들의 더 큰 꿈을 위해<br>나눔을 실천합니다</h1>
+      <p>이화미술공작소는 미술을 통해 상상력을 키우는 아이들의 밝은 미래를 위해 국내, 해외, 그리고 우리 지역사회 곳곳에 따뜻한 마음을 전하고 있습니다.</p>
+    </div>
+
+    <div class="card-list">
+      <!-- 1. 국내 월드비전 -->
+      <div class="card">
+        <div class="card-img"
+          style="background-image: url('https://postfiles.pstatic.net/MjAyNTAzMDJfMTM2/MDAxNzQwODgwMzM3MDM1.heHaR3XSPj9VcvIeUhhVVP6INIofxXt6Nelz69fVx0Ig.2F1F2aLTX57Opq6zdSSnDQABh9ghQfL4q_v1fVx-LKUg.JPEG/SE-f0febcd5-f708-11ef-b1c1-d3c9a7c1ddc3.jpg?type=w773');">
+        </div>
+        <div class="card-content">
+          <div class="card-category domestic">Domestic</div>
+          <h2 class="card-title">국내 월드비전</h2>
+          <p class="card-desc">국내의 도움이 필요한 아이들이 교육의 기회를 잃지 않고 새 학년, 새 학기의 설렘을 느낄 수 있도록 월드비전을 통해 꿈을 응원합니다.</p>
+        </div>
+      </div>
+
+      <!-- 2. 해외 굿네이버스 -->
+      <div class="card">
+        <div class="card-img"
+          style="background-image: url('img/굿네이버스01.png');">
+        </div>
+        <div class="card-content">
+          <div class="card-category overseas">Overseas</div>
+          <h2 class="card-title">해외 굿네이버스</h2>
+          <p class="card-desc">지구촌 곳곳의 소외된 아이들에게 깨끗한 환경과 교육의 권리를 찾아주기 위해 굿네이버스와 함께 해외 아동 결연 후원을 진행합니다.</p>
+        </div>
+      </div>
+
+      <!-- 3. 지역 선유지역아동센터 -->
+      <div class="card">
+        <div class="card-img" style="background-image: url('img/지역아동센터01.png'); background-position: top;"></div>
+        <div class="card-content">
+          <div class="card-category local">Local</div>
+          <h2 class="card-title">미드타운 선유지역아동센터</h2>
+          <p class="card-desc">우리 지역의 아이들이 예술적 영감을 나누고 건강하게 성장할 수 있도록 선유지역아동센터에 마음을 전달하며 이웃 사랑을 실천합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-quote">"아이들이 그리는 아름다운 세상을 함께 만들어갑니다."</div>
+      <button class="btn-close" onclick="window.close();">닫기</button>
+    </div>
+  </div>
+</body>
+
+</html>
